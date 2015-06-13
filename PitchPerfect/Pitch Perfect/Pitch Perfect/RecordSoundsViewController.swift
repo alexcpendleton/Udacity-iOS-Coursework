@@ -14,7 +14,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var recordingInitiator: UIButton!
     @IBOutlet weak var recordingIndicator: UILabel!
     @IBOutlet weak var recordingStopper: UIButton!
-    
+
     var recorder : Recorder!;
     
     override func viewWillAppear(animated: Bool) {
@@ -48,8 +48,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     @IBAction func recordAudio(sender: UIButton) {
-        // TODO: record the user's voice
-        println("Record button pressed");
         startRecording();
     }
     

@@ -9,20 +9,26 @@
 import UIKit
 import AVFoundation
 
-class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
+class PlaySoundsViewController: UIViewController {
     
+    @IBOutlet weak var darthVaderButton: UIButton!
+    @IBOutlet weak var chipmunkButton: UIButton!
     @IBOutlet weak var slowButton: UIButton!
     @IBOutlet weak var fastButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     var playButtons:Array<UIButton> = [];
-    var player: AVAudioPlayer!
+    
     var audioSource: RecordedAudio!;
+    
+    var engine:AVAudioEngine!
+    var audioFile:AVAudioFile!
+    var playerNode:AVAudioPlayerNode!;
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        playButtons += [fastButton, slowButton];
+        playButtons += [fastButton, slowButton, chipmunkButton, darthVaderButton];
         stopButton.hidden = true;
         
     }
@@ -31,8 +37,7 @@ class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
         stopPlayerAndReenable();
     }
     
-    @IBAction func stopPlayerAndReenable() {
-        stopPlayer();
+    func stopPlayerAndReenable() {
         setEnabledForPlayButtonsExcept(nil, status: true);
         stopButton.hidden = true;
     }
@@ -48,41 +53,50 @@ class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     
-    func playAudio(rate: Float, sender: UIButton) {
-        setEnabledForPlayButtonsExcept(sender, status: false);
+    func playAudio(sender: UIButton, rate: Float = 1.0, pitch: Float = 1.0) {
         
-        if(player == nil) {
-            let url = audioSource.filePathUrl;
-            player = AVAudioPlayer(contentsOfURL: url, error: nil);
+        engine = AVAudioEngine();
+        audioFile = AVAudioFile(forReading:audioSource.filePathUrl, error:nil);
+        playerNode = AVAudioPlayerNode();
+        
+        setEnabledForPlayButtonsExcept(sender, status: false);
+    
+        var changePitchEffect = AVAudioUnitTimePitch();
+        changePitchEffect.pitch = pitch;
+        changePitchEffect.rate = rate;
 
-        }
-        stopPlayer();
+        engine.attachNode(playerNode);
+        engine.attachNode(changePitchEffect);
+        
+        engine.connect(playerNode, to: changePitchEffect, format: nil);
+        engine.connect(changePitchEffect, to: engine.outputNode, format:nil);
+        
+        playerNode.scheduleFile(audioFile, atTime: nil, completionHandler: audioFinishedHandler)
+        engine.startAndReturnError(nil);
+        
         stopButton.hidden = false;
-        player.enableRate = true;
-        player.rate = rate;
-        player.delegate = self;
-        player.prepareToPlay();
-        player.play();
+        playerNode.play();
     }
     
-    func audioPlayerDidFinishPlaying(AVAudioPlayer!, successfully: Bool) {
-        stopPlayerAndReenable()
+    func audioFinishedHandler() {
+        stopPlayerAndReenable();
     }
-    
     func stopPlayer() {
-        if(player == nil) {
-            return;
-        }
-        player.stop();
-        player.currentTime = 0;
+        engine.stop();
     }
     
     @IBAction func playQuickly(sender: UIButton) {
-        playAudio(1.5, sender: sender);
+        playAudio(sender, rate:1.5);
     }
     
     @IBAction func playSlowly(sender: UIButton) {
-        playAudio(0.5, sender: sender)
+        playAudio(sender, rate:0.5)
+    }
+    @IBAction func playChipmunkly(sender: UIButton) {
+        playAudio(sender, pitch:2400)
+    }
+    @IBAction func playVaderly(sender: UIButton) {
+        playAudio(sender, pitch:-2400);
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

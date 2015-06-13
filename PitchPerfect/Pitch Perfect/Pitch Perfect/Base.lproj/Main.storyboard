@@ -123,6 +123,15 @@
                                     <action selector="playSlowly:" destination="qVf-rj-h8u" eventType="touchUpInside" id="6ap-OH-cY8"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="svg-d7-1Su" userLabel="Chipmunk Button">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="Chipmunk">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playChipmunkly:" destination="qVf-rj-h8u" eventType="touchUpInside" id="Bqh-Nr-BIi"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O2w-2D-OVI" userLabel="Fast Button">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" image="Fast">
@@ -132,12 +141,25 @@
                                     <action selector="playQuickly:" destination="qVf-rj-h8u" eventType="touchUpInside" id="FX5-DJ-cap"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4t-4O-eFz" userLabel="Darth Vader Button">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="Darth Vader">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playVaderly:" destination="qVf-rj-h8u" eventType="touchUpInside" id="WQn-Kn-emU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerY" secondItem="svg-d7-1Su" secondAttribute="centerY" constant="-80" id="0BT-oK-K5q"/>
+                            <constraint firstAttribute="centerX" secondItem="t4t-4O-eFz" secondAttribute="centerX" constant="-76" id="14U-Xs-SM8"/>
                             <constraint firstItem="Umn-2L-iR2" firstAttribute="top" secondItem="ngd-ID-7sX" secondAttribute="bottom" constant="58" id="Fti-Ya-Y8m"/>
+                            <constraint firstAttribute="centerY" secondItem="t4t-4O-eFz" secondAttribute="centerY" constant="-80" id="JVi-Ze-rFp"/>
                             <constraint firstAttribute="centerX" secondItem="ngd-ID-7sX" secondAttribute="centerX" constant="-5" id="PLN-qx-ef9"/>
                             <constraint firstAttribute="centerX" secondItem="dr8-7i-MXt" secondAttribute="centerX" constant="66" id="TV7-1D-CJ4"/>
+                            <constraint firstAttribute="centerX" secondItem="svg-d7-1Su" secondAttribute="centerX" constant="66" id="UFr-0u-7VM"/>
                             <constraint firstAttribute="centerY" secondItem="O2w-2D-OVI" secondAttribute="centerY" constant="45" id="VFg-ws-DiZ"/>
                             <constraint firstAttribute="centerY" secondItem="dr8-7i-MXt" secondAttribute="centerY" constant="45" id="fto-81-ZuD"/>
                             <constraint firstAttribute="centerX" secondItem="O2w-2D-OVI" secondAttribute="centerX" constant="-76" id="n3j-IT-pMH"/>
@@ -147,36 +169,50 @@
                             <mask key="subviews">
                                 <exclude reference="ngd-ID-7sX"/>
                                 <exclude reference="dr8-7i-MXt"/>
+                                <exclude reference="svg-d7-1Su"/>
                                 <exclude reference="O2w-2D-OVI"/>
+                                <exclude reference="t4t-4O-eFz"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Fti-Ya-Y8m"/>
+                                <exclude reference="TV7-1D-CJ4"/>
+                                <exclude reference="fto-81-ZuD"/>
                                 <exclude reference="VFg-ws-DiZ"/>
                                 <exclude reference="n3j-IT-pMH"/>
                                 <exclude reference="sN0-YN-YuZ"/>
-                                <exclude reference="TV7-1D-CJ4"/>
-                                <exclude reference="fto-81-ZuD"/>
+                                <exclude reference="0BT-oK-K5q"/>
+                                <exclude reference="UFr-0u-7VM"/>
+                                <exclude reference="14U-Xs-SM8"/>
+                                <exclude reference="JVi-Ze-rFp"/>
                                 <exclude reference="PLN-qx-ef9"/>
+                                <exclude reference="Fti-Ya-Y8m"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="ngd-ID-7sX"/>
                                 <include reference="dr8-7i-MXt"/>
+                                <include reference="svg-d7-1Su"/>
                                 <include reference="O2w-2D-OVI"/>
+                                <include reference="t4t-4O-eFz"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="Fti-Ya-Y8m"/>
+                                <include reference="TV7-1D-CJ4"/>
+                                <include reference="fto-81-ZuD"/>
                                 <include reference="VFg-ws-DiZ"/>
                                 <include reference="n3j-IT-pMH"/>
                                 <include reference="sN0-YN-YuZ"/>
-                                <include reference="TV7-1D-CJ4"/>
-                                <include reference="fto-81-ZuD"/>
+                                <include reference="0BT-oK-K5q"/>
+                                <include reference="UFr-0u-7VM"/>
+                                <include reference="14U-Xs-SM8"/>
+                                <include reference="JVi-Ze-rFp"/>
                                 <include reference="PLN-qx-ef9"/>
+                                <include reference="Fti-Ya-Y8m"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="chipmunkButton" destination="svg-d7-1Su" id="Lju-ty-Ke4"/>
+                        <outlet property="darthVaderButton" destination="t4t-4O-eFz" id="ZQw-jR-8Wp"/>
                         <outlet property="fastButton" destination="O2w-2D-OVI" id="Acz-M2-YzP"/>
                         <outlet property="slowButton" destination="dr8-7i-MXt" id="Y7o-8B-lEV"/>
                         <outlet property="stopButton" destination="ngd-ID-7sX" id="n7S-hY-Zhk"/>
@@ -206,6 +242,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Chipmunk" width="100" height="100"/>
+        <image name="Darth Vader" width="100" height="100"/>
         <image name="Fast" width="100" height="100"/>
         <image name="Microphone" width="100" height="100"/>
         <image name="Slow" width="100" height="100"/>
