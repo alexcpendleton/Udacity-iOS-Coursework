@@ -16,6 +16,8 @@ class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
     @IBOutlet weak var stopButton: UIButton!
     var playButtons:Array<UIButton> = [];
     var player: AVAudioPlayer!
+    var audioSource: RecordedAudio!;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,18 +47,14 @@ class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
         
     }
     
-    func playMp3(filename: String, rate: Float, sender: UIButton) {
+    
+    func playAudio(rate: Float, sender: UIButton) {
         setEnabledForPlayButtonsExcept(sender, status: false);
-        var mainBundle = NSBundle.mainBundle();
         
         if(player == nil) {
-            if var filePath = mainBundle.pathForResource(filename, ofType:"mp3") {
-                var url = NSURL.fileURLWithPath(filePath);
-                player = AVAudioPlayer(contentsOfURL: url, error: nil);
-                
-            } else {
-                println("Mp3 file not found");
-            }
+            let url = audioSource.filePathUrl;
+            player = AVAudioPlayer(contentsOfURL: url, error: nil);
+
         }
         stopPlayer();
         stopButton.hidden = false;
@@ -80,11 +78,11 @@ class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     @IBAction func playQuickly(sender: UIButton) {
-        playMp3("movie_quote", rate: 1.5, sender: sender);
+        playAudio(1.5, sender: sender);
     }
     
     @IBAction func playSlowly(sender: UIButton) {
-        playMp3("movie_quote", rate: 0.5, sender: sender);
+        playAudio(0.5, sender: sender)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -45,8 +45,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         enableRecordingButton();
         hideStopButton();
         hideRecordingIndicator();
-        
-        //performSegueWithIdentifier(<#identifier: String?#>, sender: <#AnyObject?#>)
     }
     
     @IBAction func recordAudio(sender: UIButton) {
@@ -95,9 +93,12 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             performSegueWithIdentifier("recordingFinished", sender: result)
         }
     }
-    internal class RecordedAudio : NSObject {
-        var filePathUrl : NSURL!;
-        var title : NSString!;
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // TODO: This smells. How does one manage segue identifiers in a non-trivial app?
+        if(segue.identifier == "recordingFinished") {
+            let playSoundsVC = segue.destinationViewController as! PlaySoundsViewController;
+            playSoundsVC.audioSource = sender as! RecordedAudio;
+        }
     }
     internal class Recorder : NSObject {
         internal init(delegate: AVAudioRecorderDelegate!) {
