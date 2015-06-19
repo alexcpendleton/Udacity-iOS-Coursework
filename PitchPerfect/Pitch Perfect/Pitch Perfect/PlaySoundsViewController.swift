@@ -31,6 +31,9 @@ class PlaySoundsViewController: UIViewController {
         playButtons += [fastButton, slowButton, chipmunkButton, darthVaderButton];
         stopButton.hidden = true;
         
+        engine = AVAudioEngine();
+        audioFile = AVAudioFile(forReading:audioSource.filePathUrl, error:nil);
+        playerNode = AVAudioPlayerNode();
     }
     
     @IBAction func playbackStopped(sender: UIButton) {
@@ -55,10 +58,6 @@ class PlaySoundsViewController: UIViewController {
     
     func playAudio(sender: UIButton, rate: Float = 1.0, pitch: Float = 1.0) {
         
-        engine = AVAudioEngine();
-        audioFile = AVAudioFile(forReading:audioSource.filePathUrl, error:nil);
-        playerNode = AVAudioPlayerNode();
-        
         setEnabledForPlayButtonsExcept(sender, status: false);
     
         var changePitchEffect = AVAudioUnitTimePitch();
@@ -71,18 +70,41 @@ class PlaySoundsViewController: UIViewController {
         engine.connect(playerNode, to: changePitchEffect, format: nil);
         engine.connect(changePitchEffect, to: engine.outputNode, format:nil);
         
-        playerNode.scheduleFile(audioFile, atTime: nil, completionHandler: audioFinishedHandler)
+        /* I intentionally got rid of the separate method for playing audio that could 
+        only accept a rate, which used the AVAudioPlayer with a delegate. However, this
+        completion handler accomplishes effectively the same thing. I did implement it 
+        that way originally, but having multiple methods that do slightly different things 
+        just smelled wrong to me, especially since this way accepts a rate. Additionally,
+        I encountered what seems to be a bug in the scheduleFile method where the
+        completionHandler is fired immediately rather than when the file finishes playing.
+        A solution I discovered was to use the scheduleBuffer method instead. I've left both
+        approaches here if you wish to see for yourself. */
+        var useBufferInsteadOfFile = true;
+        if(useBufferInsteadOfFile) {
+            //var format = audioFile.processingFormat
+            //var audioFrameCount = UInt32(audioFile.length)
+            var format : AVAudioFormat! = audioFile.processingFormat;
+            var frameCapacity : AVAudioFrameCount = UInt32(audioFile.length);
+            var bufferToPlay = AVAudioPCMBuffer(PCMFormat: format, frameCapacity: frameCapacity)
+            playerNode.scheduleBuffer(bufferToPlay, completionHandler: audioFinishedHandler);
+        } else {
+            playerNode.scheduleFile(audioFile, atTime: nil, completionHandler: audioFinishedHandler)
+        }
         engine.startAndReturnError(nil);
         
-        stopButton.hidden = false;
         playerNode.play();
+        
+        stopButton.hidden = false;
     }
     
     func audioFinishedHandler() {
+        println("audio finished handler.start");
         stopPlayerAndReenable();
+        println("audio finished handler.end");
     }
     func stopPlayer() {
-        engine.stop();
+        //engine.stop();
+        //engine.reset();
     }
     
     @IBAction func playQuickly(sender: UIButton) {
