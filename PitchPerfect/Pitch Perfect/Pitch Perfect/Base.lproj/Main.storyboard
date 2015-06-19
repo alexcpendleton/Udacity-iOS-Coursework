@@ -174,17 +174,17 @@
                                 <exclude reference="t4t-4O-eFz"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="TV7-1D-CJ4"/>
-                                <exclude reference="fto-81-ZuD"/>
+                                <exclude reference="Fti-Ya-Y8m"/>
                                 <exclude reference="VFg-ws-DiZ"/>
                                 <exclude reference="n3j-IT-pMH"/>
                                 <exclude reference="sN0-YN-YuZ"/>
+                                <exclude reference="TV7-1D-CJ4"/>
+                                <exclude reference="fto-81-ZuD"/>
+                                <exclude reference="PLN-qx-ef9"/>
                                 <exclude reference="0BT-oK-K5q"/>
                                 <exclude reference="UFr-0u-7VM"/>
                                 <exclude reference="14U-Xs-SM8"/>
                                 <exclude reference="JVi-Ze-rFp"/>
-                                <exclude reference="PLN-qx-ef9"/>
-                                <exclude reference="Fti-Ya-Y8m"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -196,17 +196,17 @@
                                 <include reference="t4t-4O-eFz"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="TV7-1D-CJ4"/>
-                                <include reference="fto-81-ZuD"/>
+                                <include reference="Fti-Ya-Y8m"/>
                                 <include reference="VFg-ws-DiZ"/>
                                 <include reference="n3j-IT-pMH"/>
                                 <include reference="sN0-YN-YuZ"/>
+                                <include reference="TV7-1D-CJ4"/>
+                                <include reference="fto-81-ZuD"/>
+                                <include reference="PLN-qx-ef9"/>
                                 <include reference="0BT-oK-K5q"/>
                                 <include reference="UFr-0u-7VM"/>
                                 <include reference="14U-Xs-SM8"/>
                                 <include reference="JVi-Ze-rFp"/>
-                                <include reference="PLN-qx-ef9"/>
-                                <include reference="Fti-Ya-Y8m"/>
                             </mask>
                         </variation>
                     </view>

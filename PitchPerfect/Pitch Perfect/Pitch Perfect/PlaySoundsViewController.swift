@@ -9,6 +9,82 @@
 import UIKit
 import AVFoundation
 
+class AVEngineManipulatedAudioPlayer : ManipulatedAudioPlayer  {
+    var finishedCallback :()->Void!;
+    var engine: AVAudioEngine!;
+    var playerNode: AVAudioPlayerNode!;
+    
+    init() {
+        engine = AVAudioEngine();
+        finishedCallback = { return; };
+    }
+    func playAudio(url: NSURL!, rate: Float, pitch: Float) {
+        engine.stop();
+        engine.reset();
+        var audioFile = AVAudioFile(forReading:url, error:nil)
+        playerNode = AVAudioPlayerNode();
+        
+        var changePitchEffect = AVAudioUnitTimePitch();
+        changePitchEffect.pitch = pitch;
+        changePitchEffect.rate = rate;
+        
+        engine.attachNode(playerNode);
+        engine.attachNode(changePitchEffect);
+
+        engine.connect(playerNode, to: changePitchEffect, format: nil);
+        engine.connect(changePitchEffect, to: engine.outputNode, format:nil);
+
+        
+        /* I intentionally got rid of the separate method for playing audio that could
+        only accept a rate, which used the AVAudioPlayer with a delegate. However, this
+        completion handler accomplishes effectively the same thing. I did implement it
+        that way originally, but having multiple methods that do slightly different things
+        just smelled wrong to me, especially since this way accepts a rate. Additionally,
+        I encountered what seems to be a bug in the scheduleFile method where the
+        completionHandler is fired immediately rather than when the file finishes playing.
+        A solution I discovered was to use the scheduleBuffer method instead. I've left both
+        approaches here if you wish to see for yourself.
+        Trying that seemed to have the same result.
+        
+        I'm sort of at a loss now.
+        
+        More updates: I've even found what seems to be some sort of Udacity forum archive
+        with people trying and failing at the same thing I am. This is both reassuring
+        and incredibly disheartening.
+        http://webmaps.mammothmapping.com/t/questions-for-lesson-4b/38/17
+        
+        */
+        var useBufferInsteadOfFile = false;
+        if(useBufferInsteadOfFile) {
+            //var format = audioFile.processingFormat
+            //var audioFrameCount = UInt32(audioFile.length)
+            var format : AVAudioFormat! = audioFile.processingFormat;
+            var frameCapacity : AVAudioFrameCount = UInt32(audioFile.length);
+            var bufferToPlay = AVAudioPCMBuffer(PCMFormat: format, frameCapacity: frameCapacity)
+            playerNode.scheduleBuffer(bufferToPlay, completionHandler: {
+                //self.finishedCallback();
+            });
+        } else {
+            playerNode.scheduleFile(audioFile, atTime: nil, completionHandler: {
+                //self.finishedCallback();
+            });
+        }
+        
+        engine.startAndReturnError(nil);
+        
+        
+        self.finishedCallback();
+        
+    }
+}
+
+protocol ManipulatedAudioPlayer {
+    var finishedCallback :()->Void! { get set };
+    func playAudio(url: NSURL!, rate: Float, pitch: Float);
+}
+protocol ManipulatedAudioPlayerDelegate {
+    func playingStopped();
+}
 class PlaySoundsViewController: UIViewController {
     
     @IBOutlet weak var darthVaderButton: UIButton!
@@ -16,13 +92,10 @@ class PlaySoundsViewController: UIViewController {
     @IBOutlet weak var slowButton: UIButton!
     @IBOutlet weak var fastButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
+    
     var playButtons:Array<UIButton> = [];
-    
     var audioSource: RecordedAudio!;
-    
-    var engine:AVAudioEngine!
-    var audioFile:AVAudioFile!
-    var playerNode:AVAudioPlayerNode!;
+    var player :ManipulatedAudioPlayer!;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +103,11 @@ class PlaySoundsViewController: UIViewController {
         // Do any additional setup after loading the view.
         playButtons += [fastButton, slowButton, chipmunkButton, darthVaderButton];
         stopButton.hidden = true;
-        
-        engine = AVAudioEngine();
-        audioFile = AVAudioFile(forReading:audioSource.filePathUrl, error:nil);
-        playerNode = AVAudioPlayerNode();
+        player = AVEngineManipulatedAudioPlayer();
+        player.finishedCallback = { self.playingStoppedCallback() };
+    }
+    func playingStoppedCallback() { // Callback for ManipulatedAudioPlayer finished playing
+        stopPlayerAndReenable()
     }
     
     @IBAction func playbackStopped(sender: UIButton) {
@@ -57,44 +131,9 @@ class PlaySoundsViewController: UIViewController {
     
     
     func playAudio(sender: UIButton, rate: Float = 1.0, pitch: Float = 1.0) {
-        
         setEnabledForPlayButtonsExcept(sender, status: false);
-    
-        var changePitchEffect = AVAudioUnitTimePitch();
-        changePitchEffect.pitch = pitch;
-        changePitchEffect.rate = rate;
-
-        engine.attachNode(playerNode);
-        engine.attachNode(changePitchEffect);
-        
-        engine.connect(playerNode, to: changePitchEffect, format: nil);
-        engine.connect(changePitchEffect, to: engine.outputNode, format:nil);
-        
-        /* I intentionally got rid of the separate method for playing audio that could 
-        only accept a rate, which used the AVAudioPlayer with a delegate. However, this
-        completion handler accomplishes effectively the same thing. I did implement it 
-        that way originally, but having multiple methods that do slightly different things 
-        just smelled wrong to me, especially since this way accepts a rate. Additionally,
-        I encountered what seems to be a bug in the scheduleFile method where the
-        completionHandler is fired immediately rather than when the file finishes playing.
-        A solution I discovered was to use the scheduleBuffer method instead. I've left both
-        approaches here if you wish to see for yourself. */
-        var useBufferInsteadOfFile = true;
-        if(useBufferInsteadOfFile) {
-            //var format = audioFile.processingFormat
-            //var audioFrameCount = UInt32(audioFile.length)
-            var format : AVAudioFormat! = audioFile.processingFormat;
-            var frameCapacity : AVAudioFrameCount = UInt32(audioFile.length);
-            var bufferToPlay = AVAudioPCMBuffer(PCMFormat: format, frameCapacity: frameCapacity)
-            playerNode.scheduleBuffer(bufferToPlay, completionHandler: audioFinishedHandler);
-        } else {
-            playerNode.scheduleFile(audioFile, atTime: nil, completionHandler: audioFinishedHandler)
-        }
-        engine.startAndReturnError(nil);
-        
-        playerNode.play();
-        
         stopButton.hidden = false;
+        player.playAudio(audioSource.filePathUrl, rate: rate, pitch: pitch)
     }
     
     func audioFinishedHandler() {
@@ -103,8 +142,7 @@ class PlaySoundsViewController: UIViewController {
         println("audio finished handler.end");
     }
     func stopPlayer() {
-        //engine.stop();
-        //engine.reset();
+        // player.stop();
     }
     
     @IBAction func playQuickly(sender: UIButton) {
