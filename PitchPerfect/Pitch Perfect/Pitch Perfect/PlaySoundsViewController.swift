@@ -8,6 +8,17 @@
 
 import UIKit
 import AVFoundation
+class AVAudioFileManipulatedAudioPlayer : ManipulatedAudioPlayer {
+    var finishedCallback :()->Void!;
+    init() {
+        finishedCallback = { return; };
+    }
+    func playAudio(url: NSURL!, rate: Float, pitch: Float) {
+    }
+    func stop() {
+        
+    }
+}
 
 class AVEngineManipulatedAudioPlayer : ManipulatedAudioPlayer  {
     var finishedCallback :()->Void!;
@@ -18,9 +29,14 @@ class AVEngineManipulatedAudioPlayer : ManipulatedAudioPlayer  {
         engine = AVAudioEngine();
         finishedCallback = { return; };
     }
+    func stop() {
+        if((engine) != nil) {
+            engine.stop();
+            engine.reset();
+        }
+    }
     func playAudio(url: NSURL!, rate: Float, pitch: Float) {
-        engine.stop();
-        engine.reset();
+        stop();
         var audioFile = AVAudioFile(forReading:url, error:nil)
         playerNode = AVAudioPlayerNode();
         
@@ -55,23 +71,45 @@ class AVEngineManipulatedAudioPlayer : ManipulatedAudioPlayer  {
         
         */
         var useBufferInsteadOfFile = false;
+        var frameCapacity : AVAudioFrameCount = UInt32(audioFile.length);
+        var format : AVAudioFormat! = audioFile.processingFormat;
         if(useBufferInsteadOfFile) {
             //var format = audioFile.processingFormat
             //var audioFrameCount = UInt32(audioFile.length)
-            var format : AVAudioFormat! = audioFile.processingFormat;
-            var frameCapacity : AVAudioFrameCount = UInt32(audioFile.length);
             var bufferToPlay = AVAudioPCMBuffer(PCMFormat: format, frameCapacity: frameCapacity)
             playerNode.scheduleBuffer(bufferToPlay, completionHandler: {
-                //self.finishedCallback();
+                return
+                self.finishedCallback();
             });
         } else {
             playerNode.scheduleFile(audioFile, atTime: nil, completionHandler: {
-                //self.finishedCallback();
+                return
+                self.finishedCallback();
             });
         }
-        
+
+        var amountPlayed: Int32;
+        println("frameCapacity: " + frameCapacity.description);
+        playerNode.installTapOnBus(0, bufferSize: frameCapacity, format: format) {
+            (buffer: AVAudioPCMBuffer!, time: AVAudioTime!) -> Void in
+            println("now: " + NSDate().description);
+            println("buffer.frameCapacity: " + buffer.frameCapacity.description);
+            println("buffer.frameLength: " + buffer.frameLength.description);
+            println("playing? " + self.playerNode.playing.description);
+            println("time: " + time.description);
+            
+            // why does this work? because perhaps the smaller buffer is reused by the audioengine, with the code to dump new data into the block just using the block size as set here?
+            // I am not sure that this is supported by apple?
+            //NSLog(@"buffer frame length %d", (int)buffer.frameLength);
+
+            var frames:UInt32! = 0;
+            //NSLog(@"number of buffers: %d", buffer.audioBufferList[0].mNumberBuffers.description);
+            //NSLog(@"%d frames are sent at %lf", (int) frames, [AVAudioTime secondsForHostTime:[when hostTime]] - start);
+        }
+        engine.prepare();
         engine.startAndReturnError(nil);
         
+        playerNode.play();
         
         self.finishedCallback();
         
@@ -81,6 +119,7 @@ class AVEngineManipulatedAudioPlayer : ManipulatedAudioPlayer  {
 protocol ManipulatedAudioPlayer {
     var finishedCallback :()->Void! { get set };
     func playAudio(url: NSURL!, rate: Float, pitch: Float);
+    func stop();
 }
 protocol ManipulatedAudioPlayerDelegate {
     func playingStopped();
@@ -142,7 +181,7 @@ class PlaySoundsViewController: UIViewController {
         println("audio finished handler.end");
     }
     func stopPlayer() {
-        // player.stop();
+        player.stop();
     }
     
     @IBAction func playQuickly(sender: UIButton) {
