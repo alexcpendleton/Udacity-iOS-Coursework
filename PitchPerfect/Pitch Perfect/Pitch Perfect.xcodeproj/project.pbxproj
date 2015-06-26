@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		491C24E71B2CB96400E10B87 /* RecordedAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491C24E61B2CB96400E10B87 /* RecordedAudio.swift */; };
+		493D31E51B3CDC0000BF0580 /* ManipulatedAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493D31E41B3CDC0000BF0580 /* ManipulatedAudioPlayer.swift */; };
+		493D31E71B3CDD0600BF0580 /* AVEngineManipulatedAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493D31E61B3CDD0600BF0580 /* AVEngineManipulatedAudioPlayer.swift */; };
+		493D31E91B3CDD5800BF0580 /* AVAudioPlayerManipulatedAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493D31E81B3CDD5800BF0580 /* AVAudioPlayerManipulatedAudioPlayer.swift */; };
 		49FE18F11B27CA3100D144D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE18F01B27CA3100D144D8 /* AppDelegate.swift */; };
 		49FE18F31B27CA3100D144D8 /* RecordSoundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE18F21B27CA3100D144D8 /* RecordSoundsViewController.swift */; };
 		49FE18F61B27CA3100D144D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FE18F41B27CA3100D144D8 /* Main.storyboard */; };
@@ -29,6 +32,9 @@
 
 /* Begin PBXFileReference section */
 		491C24E61B2CB96400E10B87 /* RecordedAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordedAudio.swift; sourceTree = "<group>"; };
+		493D31E41B3CDC0000BF0580 /* ManipulatedAudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManipulatedAudioPlayer.swift; sourceTree = "<group>"; };
+		493D31E61B3CDD0600BF0580 /* AVEngineManipulatedAudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVEngineManipulatedAudioPlayer.swift; sourceTree = "<group>"; };
+		493D31E81B3CDD5800BF0580 /* AVAudioPlayerManipulatedAudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVAudioPlayerManipulatedAudioPlayer.swift; sourceTree = "<group>"; };
 		49FE18EB1B27CA3100D144D8 /* Pitch Perfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pitch Perfect.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FE18EF1B27CA3100D144D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49FE18F01B27CA3100D144D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +66,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		493D31E31B3CDBDB00BF0580 /* Players */ = {
+			isa = PBXGroup;
+			children = (
+				493D31E41B3CDC0000BF0580 /* ManipulatedAudioPlayer.swift */,
+				493D31E61B3CDD0600BF0580 /* AVEngineManipulatedAudioPlayer.swift */,
+				493D31E81B3CDD5800BF0580 /* AVAudioPlayerManipulatedAudioPlayer.swift */,
+			);
+			name = Players;
+			sourceTree = "<group>";
+		};
 		49FE18E21B27CA3100D144D8 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +97,7 @@
 		49FE18ED1B27CA3100D144D8 /* Pitch Perfect */ = {
 			isa = PBXGroup;
 			children = (
+				493D31E31B3CDBDB00BF0580 /* Players */,
 				49FE18F01B27CA3100D144D8 /* AppDelegate.swift */,
 				49FE18F21B27CA3100D144D8 /* RecordSoundsViewController.swift */,
 				49FE18F41B27CA3100D144D8 /* Main.storyboard */,
@@ -218,10 +235,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				493D31E91B3CDD5800BF0580 /* AVAudioPlayerManipulatedAudioPlayer.swift in Sources */,
 				491C24E71B2CB96400E10B87 /* RecordedAudio.swift in Sources */,
+				493D31E71B3CDD0600BF0580 /* AVEngineManipulatedAudioPlayer.swift in Sources */,
 				49FE18F31B27CA3100D144D8 /* RecordSoundsViewController.swift in Sources */,
 				49FE19111B29155F00D144D8 /* PlaySoundsViewController.swift in Sources */,
 				49FE18F11B27CA3100D144D8 /* AppDelegate.swift in Sources */,
+				493D31E51B3CDC0000BF0580 /* ManipulatedAudioPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
