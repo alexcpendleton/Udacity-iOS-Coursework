@@ -26,7 +26,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         hideStopButton();
         hideRecordingIndicator();
         enableRecordingButton();
-        
+        navigationController?.navigationBarHidden = true
     }
     
     override func viewDidLoad() {

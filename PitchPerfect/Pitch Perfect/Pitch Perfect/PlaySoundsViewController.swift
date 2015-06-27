@@ -27,6 +27,7 @@ class PlaySoundsViewController: UIViewController {
         playButtons += [fastButton, slowButton, chipmunkButton, darthVaderButton];
         stopButton.hidden = true;
         player = AVAudioPlayerManipulatedAudioPlayer();
+        navigationController?.navigationBarHidden = false
     }
     func playingStoppedCallback() { // Callback for ManipulatedAudioPlayer finished playing
         stopPlayer()
