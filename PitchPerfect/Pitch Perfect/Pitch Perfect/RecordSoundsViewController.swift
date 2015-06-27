@@ -14,6 +14,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var recordingInitiator: UIButton!
     @IBOutlet weak var recordingIndicator: UILabel!
     @IBOutlet weak var recordingStopper: UIButton!
+    @IBOutlet weak var recordingInstructions: UILabel!
 
     var recorder : Recorder!;
     
@@ -26,7 +27,8 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         hideStopButton();
         hideRecordingIndicator();
         enableRecordingButton();
-        navigationController?.navigationBarHidden = true
+        navigationController?.navigationBarHidden = true;
+        recordingInstructions.hidden = false;
     }
     
     override func viewDidLoad() {
@@ -60,6 +62,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         showRecordingIndicator();
         showStopButton();
         recorder.startRecording();
+        recordingInstructions.hidden = true;
     }
     
     func showRecordingIndicator(){

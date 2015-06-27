@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCx-Mg-Nfx">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCx-Mg-Nfx" userLabel="Record Button">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" image="Microphone">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -31,7 +31,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6gE-29-pAd">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6gE-29-pAd" userLabel="Stop Button">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" image="Stop">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -40,9 +40,17 @@
                                     <action selector="stopRecording:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="X1G-Zz-wVo"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Record" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ER-ME-IMJ">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="4ER-ME-IMJ" firstAttribute="centerX" secondItem="xCx-Mg-Nfx" secondAttribute="centerX" id="Gqr-UM-w7v"/>
+                            <constraint firstItem="4ER-ME-IMJ" firstAttribute="top" secondItem="xCx-Mg-Nfx" secondAttribute="bottom" constant="8" id="SxC-8m-o6q"/>
                             <constraint firstItem="sOL-XI-4NH" firstAttribute="top" secondItem="xCx-Mg-Nfx" secondAttribute="bottom" constant="8" id="TxJ-3s-qwX"/>
                             <constraint firstAttribute="centerX" secondItem="6gE-29-pAd" secondAttribute="centerX" id="eus-tT-P0V"/>
                             <constraint firstItem="sOL-XI-4NH" firstAttribute="centerX" secondItem="xCx-Mg-Nfx" secondAttribute="centerX" id="jYW-nZ-cXU"/>
@@ -55,14 +63,17 @@
                                 <exclude reference="xCx-Mg-Nfx"/>
                                 <exclude reference="sOL-XI-4NH"/>
                                 <exclude reference="6gE-29-pAd"/>
+                                <exclude reference="4ER-ME-IMJ"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="ybE-OW-U4D"/>
+                                <exclude reference="wV1-g3-H6a"/>
+                                <exclude reference="wvW-TT-9ZK"/>
+                                <exclude reference="Gqr-UM-w7v"/>
+                                <exclude reference="SxC-8m-o6q"/>
                                 <exclude reference="TxJ-3s-qwX"/>
                                 <exclude reference="jYW-nZ-cXU"/>
                                 <exclude reference="eus-tT-P0V"/>
-                                <exclude reference="wV1-g3-H6a"/>
-                                <exclude reference="wvW-TT-9ZK"/>
+                                <exclude reference="ybE-OW-U4D"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -70,14 +81,17 @@
                                 <include reference="xCx-Mg-Nfx"/>
                                 <include reference="sOL-XI-4NH"/>
                                 <include reference="6gE-29-pAd"/>
+                                <include reference="4ER-ME-IMJ"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="ybE-OW-U4D"/>
+                                <include reference="wV1-g3-H6a"/>
+                                <include reference="wvW-TT-9ZK"/>
+                                <include reference="Gqr-UM-w7v"/>
+                                <include reference="SxC-8m-o6q"/>
                                 <include reference="TxJ-3s-qwX"/>
                                 <include reference="jYW-nZ-cXU"/>
                                 <include reference="eus-tT-P0V"/>
-                                <include reference="wV1-g3-H6a"/>
-                                <include reference="wvW-TT-9ZK"/>
+                                <include reference="ybE-OW-U4D"/>
                             </mask>
                         </variation>
                     </view>
@@ -85,6 +99,7 @@
                     <connections>
                         <outlet property="recordingIndicator" destination="sOL-XI-4NH" id="Bx8-rl-yQi"/>
                         <outlet property="recordingInitiator" destination="xCx-Mg-Nfx" id="ogk-Ps-QT3"/>
+                        <outlet property="recordingInstructions" destination="4ER-ME-IMJ" id="Dwb-FQ-MYo"/>
                         <outlet property="recordingStopper" destination="6gE-29-pAd" id="SBz-NW-KiW"/>
                         <segue destination="qVf-rj-h8u" kind="show" identifier="recordingFinished" id="LU0-NS-6e7"/>
                     </connections>
