@@ -88,7 +88,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     func audioRecorderDidFinishRecording(avRecorder: AVAudioRecorder!, successfully flag: Bool) {
         if(flag) {
             // Save the recorded audio
-            var result = RecordedAudio(avAudioRecorder.url, avRecorder.url.lastPathComponent);
+            var result = RecordedAudio(url: avRecorder.url, title: avRecorder.url.lastPathComponent!);
             // Segue to modifier screen
             performSegueWithIdentifier(recordingFinishedSegueIdentifier, sender: result)
         }
