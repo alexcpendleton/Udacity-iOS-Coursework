@@ -14,11 +14,11 @@
 		<string>https://github.com/alexcpendleton/Udacity-iOS-Coursework.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>PitchPerfect/Pitch Perfect/Pitch Perfect.xcodeproj</string>
+	<string>Pitch Perfect/Pitch Perfect.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>F1F24C8560492CD1D5FE85987828BF6DC55A49B6</key>
-		<string>../../../..</string>
+		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/alexcpendleton/Udacity-iOS-Coursework.git</string>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>F1F24C8560492CD1D5FE85987828BF6DC55A49B6</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Udacity-iOS-Coursework</string>
+			<string>UdacityiOS</string>
 		</dict>
 	</array>
 </dict>
