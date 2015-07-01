@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="UIKitFundamentals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,8 +15,56 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlP-eJ-pPc" userLabel="Count">
+                                <rect key="frame" x="279" y="104" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggA-Sh-mtm">
+                                <rect key="frame" x="266" y="285" width="69" height="30"/>
+                                <state key="normal" title="Increment">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="incrementCount" destination="BYZ-38-t0r" eventType="touchUpInside" id="q6u-Hz-Ts0"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FTu-E2-r1g" userLabel="Count 2">
+                                <rect key="frame" x="279" y="133" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i4G-zY-FAd">
+                                <rect key="frame" x="263" y="315" width="75" height="30"/>
+                                <state key="normal" title="Decrement">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="decrementCount" destination="BYZ-38-t0r" eventType="touchUpInside" id="V89-EJ-ZT9"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="i4G-zY-FAd" firstAttribute="top" secondItem="ggA-Sh-mtm" secondAttribute="bottom" id="9n9-aS-4hc"/>
+                            <constraint firstAttribute="centerX" secondItem="ggA-Sh-mtm" secondAttribute="centerX" constant="-0.5" id="Dvt-KC-4G0"/>
+                            <constraint firstItem="mlP-eJ-pPc" firstAttribute="centerX" secondItem="FTu-E2-r1g" secondAttribute="centerX" id="I1F-1w-K9r"/>
+                            <constraint firstAttribute="centerX" secondItem="i4G-zY-FAd" secondAttribute="centerX" id="Wbo-Tl-f7h"/>
+                            <constraint firstItem="mlP-eJ-pPc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="84" id="kWa-wP-wdR"/>
+                            <constraint firstAttribute="centerX" secondItem="mlP-eJ-pPc" secondAttribute="centerX" id="l4T-He-sUh"/>
+                            <constraint firstItem="FTu-E2-r1g" firstAttribute="top" secondItem="mlP-eJ-pPc" secondAttribute="bottom" constant="8" id="mAa-oV-h4a"/>
+                            <constraint firstAttribute="centerY" secondItem="ggA-Sh-mtm" secondAttribute="centerY" id="ynQ-6V-lHT"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="incrementButton" destination="ggA-Sh-mtm" id="2mU-9W-uED"/>
+                        <outlet property="label" destination="mlP-eJ-pPc" id="Teg-1i-5UZ"/>
+                        <outlet property="otherLabel" destination="FTu-E2-r1g" id="gXU-Jf-GxN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

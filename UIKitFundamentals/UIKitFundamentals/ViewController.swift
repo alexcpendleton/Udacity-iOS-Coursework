@@ -11,35 +11,12 @@ import UIKit
 class ViewController: UIViewController {
 
     var count = 0;
-    var label:UILabel!;
-    var otherLabel:UILabel!;
-    
+    @IBOutlet var label:UILabel!;
+    @IBOutlet var otherLabel:UILabel!;
+    @IBOutlet var incrementButton:UIButton!;
     override func viewDidLoad() {
         super.viewDidLoad()
-        label = UILabel();
-        label.frame = CGRectMake(150, 150, 60, 60);
-        otherLabel = UILabel();
-        otherLabel.frame = CGRectMake(150, 210, 60, 60);
         updateLabelWithCurrentCount();
-        
-        self.view.addSubview(label);
-        
-        var incrementButton = UIButton();
-        incrementButton.frame = CGRectMake(150, 250, 60, 60);
-        incrementButton.setTitle("Increment", forState: .Normal);
-        incrementButton.setTitleColor(UIColor.blueColor(), forState: .Normal);
-        incrementButton.addTarget(self, action: "incrementCount", forControlEvents: UIControlEvents.TouchUpInside);
-        incrementButton.sizeToFit();
-        self.view.addSubview(incrementButton);
-        
-        var decrementButton = UIButton();
-        decrementButton.frame = CGRectMake(150, 310, 60, 60);
-        decrementButton.setTitle("Decrement", forState: .Normal);
-        decrementButton.setTitleColor(UIColor.redColor(), forState: .Normal);
-        decrementButton.addTarget(self, action: "decrementCount", forControlEvents: UIControlEvents.TouchUpInside);
-        decrementButton.sizeToFit();
-        self.view.addSubview(decrementButton);
-        
         
     }
 
@@ -47,12 +24,12 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func decrementCount() {
+    @IBAction func decrementCount() {
         count--;
         updateLabelWithCurrentCount();
     }
 
-    func incrementCount() {
+    @IBAction func incrementCount() {
         count++;
         updateLabelWithCurrentCount();
     }
