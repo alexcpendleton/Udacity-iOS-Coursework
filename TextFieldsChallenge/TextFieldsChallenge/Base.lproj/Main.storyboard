@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TextFieldsChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aOd-nu-faf">
+                                <rect key="frame" x="38" y="28" width="500" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cash $" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gzm-Gq-poQ">
+                                <rect key="frame" x="38" y="88" width="500" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Unlock it" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JvJ-0g-G2c">
+                                <rect key="frame" x="38" y="147" width="440" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="e8T-yL-jwg">
+                                <rect key="frame" x="486" y="147" width="51" height="31"/>
+                            </switch>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Gzm-Gq-poQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="22" id="E5G-7F-G30"/>
+                            <constraint firstItem="JvJ-0g-G2c" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="22" id="FXq-EY-69Q"/>
+                            <constraint firstItem="e8T-yL-jwg" firstAttribute="leading" secondItem="JvJ-0g-G2c" secondAttribute="trailing" constant="8" id="GGg-A1-TMD"/>
+                            <constraint firstItem="aOd-nu-faf" firstAttribute="centerX" secondItem="Gzm-Gq-poQ" secondAttribute="centerX" id="HFN-JC-yUt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Gzm-Gq-poQ" secondAttribute="trailing" constant="46" id="OsL-YI-wdW"/>
+                            <constraint firstItem="Gzm-Gq-poQ" firstAttribute="top" secondItem="aOd-nu-faf" secondAttribute="bottom" constant="30" id="Oxc-2I-Ftq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aOd-nu-faf" secondAttribute="trailing" constant="46" id="RcJ-Sd-UzQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="e8T-yL-jwg" secondAttribute="trailing" constant="49" id="gzS-d9-CoT"/>
+                            <constraint firstItem="JvJ-0g-G2c" firstAttribute="top" secondItem="Gzm-Gq-poQ" secondAttribute="bottom" constant="30" id="h72-5P-4Q0"/>
+                            <constraint firstItem="aOd-nu-faf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="22" id="nAr-k7-nhN"/>
+                            <constraint firstAttribute="centerX" secondItem="aOd-nu-faf" secondAttribute="centerX" constant="12" id="pDj-0F-Uw7"/>
+                            <constraint firstItem="Gzm-Gq-poQ" firstAttribute="leading" secondItem="JvJ-0g-G2c" secondAttribute="leading" id="qYi-cJ-XD5"/>
+                            <constraint firstItem="aOd-nu-faf" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="siY-w8-LeB"/>
+                            <constraint firstItem="e8T-yL-jwg" firstAttribute="top" secondItem="JvJ-0g-G2c" secondAttribute="top" id="vu5-di-O5E"/>
+                            <constraint firstItem="e8T-yL-jwg" firstAttribute="centerY" secondItem="JvJ-0g-G2c" secondAttribute="centerY" constant="0.5" id="yKV-KU-N5r"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cash" destination="Gzm-Gq-poQ" id="kWC-Dp-dZw"/>
+                        <outlet property="lockable" destination="JvJ-0g-G2c" id="ZTh-gL-ze5"/>
+                        <outlet property="locker" destination="e8T-yL-jwg" id="kXm-BP-qV8"/>
+                        <outlet property="zip" destination="aOd-nu-faf" id="EmL-ey-E8E"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
