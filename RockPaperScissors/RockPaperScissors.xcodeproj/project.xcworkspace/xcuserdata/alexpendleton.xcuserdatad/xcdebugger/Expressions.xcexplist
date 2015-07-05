@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "RockPaperScissors.MatchDecider.decideWinner (RockPaperScissors.MatchDecider)(Swift.ImplicitlyUnwrappedOptional&lt;RockPaperScissors.PlayableHand&gt;, hand2 : Swift.ImplicitlyUnwrappedOptional&lt;RockPaperScissors.PlayableHand&gt;) -&gt; Swift.Optional&lt;Swift.Int&gt;:MatchDecider.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "hand1.identifier">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
