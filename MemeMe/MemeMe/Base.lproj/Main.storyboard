@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -33,6 +33,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wxa-uH-PWe">
+                                <rect key="frame" x="16" y="518" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oMS-MH-BvM">
+                                <rect key="frame" x="16" y="72" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                            </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VRa-vS-Y3E">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <constraints>
@@ -53,46 +63,28 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OGR-hi-4Bl">
-                                <rect key="frame" x="239" y="385" width="146" height="50"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="42"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
-                            </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h5U-ne-Jdw">
-                                <rect key="frame" x="0.0" y="64" width="200" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="h5U-ne-Jdw" secondAttribute="height" multiplier="1:1" id="Gf9-ES-VQM"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="php-ew-Jwv">
+                                <rect key="frame" x="0.0" y="65" width="600" height="491"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Rne-J9-dxh">
-                                <rect key="frame" x="265" y="104" width="70" height="50"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="42"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="Rne-J9-dxh" secondAttribute="centerY" constant="171" id="7Oh-4u-mbX"/>
-                            <constraint firstAttribute="centerX" secondItem="Rne-J9-dxh" secondAttribute="centerX" id="9eo-m1-zUX"/>
-                            <constraint firstItem="Rne-J9-dxh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="AuK-w6-PE9"/>
-                            <constraint firstAttribute="centerY" secondItem="h5U-ne-Jdw" secondAttribute="centerY" constant="136" id="IZ1-nz-FQU"/>
-                            <constraint firstAttribute="centerX" secondItem="h5U-ne-Jdw" secondAttribute="centerX" constant="200" id="MHt-IU-oFD"/>
-                            <constraint firstAttribute="centerY" secondItem="OGR-hi-4Bl" secondAttribute="centerY" constant="-110" id="VRZ-lI-58m"/>
+                            <constraint firstItem="php-ew-Jwv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="NYo-uv-1eL"/>
+                            <constraint firstItem="php-ew-Jwv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="1" id="PdF-l0-RVL"/>
                             <constraint firstAttribute="width" secondItem="VRa-vS-Y3E" secondAttribute="width" id="Xdg-hZ-4Lh"/>
                             <constraint firstAttribute="centerX" secondItem="VRa-vS-Y3E" secondAttribute="centerX" id="YOz-QN-srg"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VRa-vS-Y3E" secondAttribute="bottom" id="YwF-IJ-DPZ"/>
-                            <constraint firstItem="Rne-J9-dxh" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="eZU-Tf-vto"/>
-                            <constraint firstAttribute="centerX" secondItem="OGR-hi-4Bl" secondAttribute="centerX" constant="-12" id="mMi-3b-TZP"/>
-                            <constraint firstAttribute="width" secondItem="OGR-hi-4Bl" secondAttribute="width" id="nXN-C6-Lfu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="php-ew-Jwv" secondAttribute="trailing" constant="-16" id="cAK-7Q-c6P"/>
+                            <constraint firstItem="VRa-vS-Y3E" firstAttribute="top" secondItem="php-ew-Jwv" secondAttribute="bottom" id="eon-qb-L5s"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ci7-cZ-igJ"/>
                     <connections>
-                        <outlet property="bottomTextField" destination="OGR-hi-4Bl" id="5Bf-Ve-nf2"/>
+                        <outlet property="bottomTextField" destination="wxa-uH-PWe" id="GOv-Gl-CXf"/>
                         <outlet property="cameraButton" destination="Xcr-Mr-eXk" id="eNN-Js-Lc5"/>
-                        <outlet property="mainImageView" destination="h5U-ne-Jdw" id="VlA-jo-R2l"/>
+                        <outlet property="mainImageView" destination="php-ew-Jwv" id="Klt-Q3-P68"/>
                         <outlet property="pickerButton" destination="GFB-5j-Omq" id="zWq-nu-cv5"/>
-                        <outlet property="topTextField" destination="Rne-J9-dxh" id="UDb-Ub-LQb"/>
+                        <outlet property="topTextField" destination="oMS-MH-BvM" id="oqu-JR-uhJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
