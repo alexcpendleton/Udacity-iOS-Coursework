@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="IR4-SF-TEp">
+            <objects>
+                <navigationController id="YZz-xl-LRk" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zSb-dT-IEe">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Pj8-tT-r4y"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="grD-Fz-3m7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-409" y="330"/>
+        </scene>
+        <!--Picker View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="PickerViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VRa-vS-Y3E">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="600" id="aoA-Fq-1qG"/>
+                                    <constraint firstAttribute="height" constant="44" id="yiI-eR-zVh"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Pick an Image" id="GFB-5j-Omq" userLabel="Pick an Image">
+                                        <connections>
+                                            <action selector="pickerPressed:" destination="BYZ-38-t0r" id="wKu-iI-cca"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="WEa-qV-gaI"/>
+                                    <barButtonItem title="Take a Photo" id="Xcr-Mr-eXk">
+                                        <connections>
+                                            <action selector="cameraPressed:" destination="BYZ-38-t0r" id="VDK-Yo-StN"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Rne-J9-dxh">
+                                <rect key="frame" x="265" y="104" width="70" height="50"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="42"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="OGR-hi-4Bl">
+                                <rect key="frame" x="239" y="385" width="146" height="50"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="42"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h5U-ne-Jdw">
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="600" id="SPF-7N-m31"/>
+                                    <constraint firstAttribute="height" constant="492" id="zck-4r-j4l"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="h5U-ne-Jdw" firstAttribute="trailing" secondItem="VRa-vS-Y3E" secondAttribute="trailing" id="02L-sL-g6q"/>
+                            <constraint firstItem="h5U-ne-Jdw" firstAttribute="centerX" secondItem="Rne-J9-dxh" secondAttribute="centerX" id="3Cu-mi-eit"/>
+                            <constraint firstItem="h5U-ne-Jdw" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="9yM-sX-Di8"/>
+                            <constraint firstItem="Rne-J9-dxh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="LjA-Pk-hvT"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VRa-vS-Y3E" secondAttribute="bottom" id="OcC-KK-biV"/>
+                            <constraint firstItem="h5U-ne-Jdw" firstAttribute="bottom" secondItem="VRa-vS-Y3E" secondAttribute="top" id="aEO-JX-l8S"/>
+                            <constraint firstItem="h5U-ne-Jdw" firstAttribute="leading" secondItem="VRa-vS-Y3E" secondAttribute="leading" id="eWr-ax-42P"/>
+                            <constraint firstItem="h5U-ne-Jdw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="sEL-lt-csJ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ci7-cZ-igJ"/>
+                    <connections>
+                        <outlet property="bottomTextField" destination="OGR-hi-4Bl" id="5Bf-Ve-nf2"/>
+                        <outlet property="cameraButton" destination="Xcr-Mr-eXk" id="eNN-Js-Lc5"/>
+                        <outlet property="mainImageView" destination="h5U-ne-Jdw" id="VlA-jo-R2l"/>
+                        <outlet property="pickerButton" destination="GFB-5j-Omq" id="zWq-nu-cv5"/>
+                        <outlet property="topTextField" destination="Rne-J9-dxh" id="UDb-Ub-LQb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="281" y="330"/>
+        </scene>
+    </scenes>
+</document>

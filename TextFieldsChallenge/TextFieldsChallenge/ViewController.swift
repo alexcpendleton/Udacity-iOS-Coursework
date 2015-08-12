@@ -132,8 +132,9 @@ public class CurrencyFormatDelegate : NSObject, UITextFieldDelegate {
                 var outputString = ""
                 // We want to take the next digit and append it to the end of the string
                 // Or if it was a backspace then chop off the last digit
-                // We don't accept edits, so we don't have to worry about editing ranged values
                 // (Backspace will have an empty replacement string)
+                
+                
                 let appending:Bool = count(string) > 0;
                 if (appending) {
                     let nextDigit = string;
