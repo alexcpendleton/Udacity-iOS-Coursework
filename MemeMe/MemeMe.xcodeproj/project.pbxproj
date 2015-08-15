@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4931B8E81B7EAEE000E67DF4 /* MemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4931B8E71B7EAEE000E67DF4 /* MemeModel.swift */; };
+		4931B8EA1B7EC17200E67DF4 /* SharedMemePersister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4931B8E91B7EC17200E67DF4 /* SharedMemePersister.swift */; };
 		4989E8DE1B796A820019B03E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989E8DD1B796A820019B03E /* AppDelegate.swift */; };
 		4989E8E01B796A820019B03E /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989E8DF1B796A820019B03E /* PickerViewController.swift */; };
 		4989E8E31B796A820019B03E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4989E8E11B796A820019B03E /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		4931B8E71B7EAEE000E67DF4 /* MemeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeModel.swift; sourceTree = "<group>"; };
+		4931B8E91B7EC17200E67DF4 /* SharedMemePersister.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedMemePersister.swift; sourceTree = "<group>"; };
 		4989E8D81B796A820019B03E /* MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4989E8DC1B796A820019B03E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4989E8DD1B796A820019B03E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				4989E8DB1B796A820019B03E /* Supporting Files */,
 				4989E8FD1B797D2E0019B03E /* MemeTextFieldDelegate.swift */,
 				4931B8E71B7EAEE000E67DF4 /* MemeModel.swift */,
+				4931B8E91B7EC17200E67DF4 /* SharedMemePersister.swift */,
 			);
 			path = MemeMe;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 			files = (
 				4989E8E01B796A820019B03E /* PickerViewController.swift in Sources */,
 				4989E8FE1B797D2E0019B03E /* MemeTextFieldDelegate.swift in Sources */,
+				4931B8EA1B7EC17200E67DF4 /* SharedMemePersister.swift in Sources */,
 				4989E8DE1B796A820019B03E /* AppDelegate.swift in Sources */,
 				4931B8E81B7EAEE000E67DF4 /* MemeModel.swift in Sources */,
 			);

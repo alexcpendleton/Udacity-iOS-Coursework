@@ -18,21 +18,33 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     
+    var persister: SharedMemePersister!
+    
     let pickerDelegate:UITextFieldDelegate = MemeTextFieldDelegate()
     let cameraDelegate:UITextFieldDelegate = MemeTextFieldDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // I'd much rather be injecting this somehow but this seems like
+        // the more "standard" and less painful way to put dependencies
+        // into ViewControllers in Swift. A much more comfortable way would
+        // be to use constructor injection.
+        persister = SharedMemePersister.defaultPersister()
+        
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        shareButton.enabled = false
+        
         // Each has its own "edited" state, thus the separate instances
         // and not implementing the delegate here in the VC
         topTextField.delegate = pickerDelegate
         bottomTextField.delegate = cameraDelegate
+        
         setAppearanceOfTextField(topTextField)
         setAppearanceOfTextField(bottomTextField)
+        
         subscribeToKeyboardNotifications()
+        
         mainImageView.addObserver(self, forKeyPath: "image", options: nil, context: nil)
-        shareButton.enabled = false
     }
     
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
@@ -149,9 +161,15 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBAction func sharePressed(sender: AnyObject!) {
         let model = buildModelFromScreen()
         var activityController = UIActivityViewController(activityItems: [model.appliedImage], applicationActivities: nil)
-        presentViewController(activityController, animated: true) { () -> Void in
-            self.save()
+        activityController.completionWithItemsHandler = { activity, success, items, error in
+            if success {
+                self.save(model)
+            }
         }
+        // The completion handler passed to presentViewController gets called 
+        // before the view is dismissed, unlike the documentation suggests.
+        // Using the completionWithItemsHandler works much better.
+        presentViewController(activityController, animated: true, completion:nil)
     }
     
     func buildModelFromScreen() -> MemeModel {
@@ -159,7 +177,7 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
             original: mainImageView.image!, applied: generateAppliedImage())
     }
     
-    func save() {
-
+    func save(model:MemeModel) {
+        persister.persist(model)
     }
 }
