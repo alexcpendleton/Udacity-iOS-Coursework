@@ -33,22 +33,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wxa-uH-PWe">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wxa-uH-PWe">
                                 <rect key="frame" x="16" y="518" width="568" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="2kT-3G-9Np"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="6zJ-Hp-kAg"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oMS-MH-BvM">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oMS-MH-BvM">
                                 <rect key="frame" x="16" y="72" width="568" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="KcY-Bi-3e5"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VRa-vS-Y3E">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="600" id="aoA-Fq-1qG"/>
-                                    <constraint firstAttribute="height" constant="44" id="yiI-eR-zVh"/>
-                                </constraints>
                                 <items>
                                     <barButtonItem title="Pick an Image" id="GFB-5j-Omq" userLabel="Pick an Image">
                                         <connections>
@@ -61,21 +64,31 @@
                                             <action selector="cameraPressed:" destination="BYZ-38-t0r" id="VDK-Yo-StN"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="R08-Yb-BYL"/>
+                                    <barButtonItem title="Share" id="wOy-pl-QQG">
+                                        <connections>
+                                            <action selector="sharePressed:" destination="BYZ-38-t0r" id="S0G-3w-oOM"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="php-ew-Jwv">
-                                <rect key="frame" x="0.0" y="65" width="600" height="491"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="php-ew-Jwv">
+                                <rect key="frame" x="136" y="165" width="329" height="270"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="php-ew-Jwv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="NYo-uv-1eL"/>
-                            <constraint firstItem="php-ew-Jwv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="1" id="PdF-l0-RVL"/>
+                            <constraint firstAttribute="centerX" secondItem="oMS-MH-BvM" secondAttribute="centerX" id="66j-Uv-sDM"/>
+                            <constraint firstItem="wxa-uH-PWe" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" constant="16" id="EuC-mz-DNu"/>
+                            <constraint firstItem="oMS-MH-BvM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="TOK-PP-HAX"/>
+                            <constraint firstItem="oMS-MH-BvM" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" constant="16" id="Ueo-ZU-Gap"/>
+                            <constraint firstItem="wxa-uH-PWe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="WzW-Fm-0xO"/>
                             <constraint firstAttribute="width" secondItem="VRa-vS-Y3E" secondAttribute="width" id="Xdg-hZ-4Lh"/>
+                            <constraint firstItem="wxa-uH-PWe" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="454" id="XyT-Iy-3nB"/>
                             <constraint firstAttribute="centerX" secondItem="VRa-vS-Y3E" secondAttribute="centerX" id="YOz-QN-srg"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VRa-vS-Y3E" secondAttribute="bottom" id="YwF-IJ-DPZ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="php-ew-Jwv" secondAttribute="trailing" constant="-16" id="cAK-7Q-c6P"/>
-                            <constraint firstItem="VRa-vS-Y3E" firstAttribute="top" secondItem="php-ew-Jwv" secondAttribute="bottom" id="eon-qb-L5s"/>
+                            <constraint firstAttribute="centerX" secondItem="wxa-uH-PWe" secondAttribute="centerX" id="ihN-ux-xmG"/>
+                            <constraint firstItem="oMS-MH-BvM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="vop-RU-hkU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ci7-cZ-igJ"/>
@@ -84,6 +97,8 @@
                         <outlet property="cameraButton" destination="Xcr-Mr-eXk" id="eNN-Js-Lc5"/>
                         <outlet property="mainImageView" destination="php-ew-Jwv" id="Klt-Q3-P68"/>
                         <outlet property="pickerButton" destination="GFB-5j-Omq" id="zWq-nu-cv5"/>
+                        <outlet property="shareButton" destination="wOy-pl-QQG" id="Nc9-HE-b05"/>
+                        <outlet property="toolbar" destination="VRa-vS-Y3E" id="eO3-uH-oG9"/>
                         <outlet property="topTextField" destination="oMS-MH-BvM" id="oqu-JR-uhJ"/>
                     </connections>
                 </viewController>
