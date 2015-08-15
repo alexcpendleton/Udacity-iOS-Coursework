@@ -17,6 +17,7 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     var persister: SharedMemePersister!
     
@@ -29,6 +30,7 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
         // the more "standard" and less painful way to put dependencies
         // into ViewControllers in Swift. A much more comfortable way would
         // be to use constructor injection.
+        navigationController?.navigationBarHidden = false
         persister = SharedMemePersister.defaultPersister()
         
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
@@ -122,6 +124,10 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBAction func cameraPressed(sender:AnyObject!) {
         presentImageViewer(UIImagePickerControllerSourceType.Camera)
     }
+    
+    @IBAction func cancelPressed(sender:AnyObject!) {
+        presentPastMemes()
+    }
 
     func presentImageViewer(sourceType:UIImagePickerControllerSourceType) {
         let controller = UIImagePickerController()
@@ -179,5 +185,12 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func save(model:MemeModel) {
         persister.persist(model)
+        presentPastMemes()
+    }
+    
+    func presentPastMemes() {
+        if let target = storyboard?.instantiateViewControllerWithIdentifier("PastMemes") as? PastMemesViewController {
+            navigationController?.pushViewController(target, animated: true)
+        }
     }
 }
