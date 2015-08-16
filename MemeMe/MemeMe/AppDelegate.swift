@@ -13,6 +13,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    private static var memeRepo:MemeRepository!
+    internal static func defaultMemeRepository() -> MemeRepository {
+        if memeRepo == nil {
+            //memeRepo = InMemoryMemeRepository()
+            memeRepo = PrepopulatedTestRepo()
+        }
+        return memeRepo
+    }
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         return true

@@ -19,7 +19,7 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     
-    var persister: SharedMemePersister!
+    var repo: MemeRepository!
     
     let pickerDelegate:UITextFieldDelegate = MemeTextFieldDelegate()
     let cameraDelegate:UITextFieldDelegate = MemeTextFieldDelegate()
@@ -31,7 +31,7 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
         // into ViewControllers in Swift. A much more comfortable way would
         // be to use constructor injection.
         navigationController?.navigationBarHidden = false
-        persister = SharedMemePersister.defaultPersister()
+        repo = AppDelegate.defaultMemeRepository()
         
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         shareButton.enabled = false
@@ -184,12 +184,12 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func save(model:MemeModel) {
-        persister.persist(model)
+        repo.persist(model)
         presentPastMemes()
     }
     
     func presentPastMemes() {
-        if let target = storyboard?.instantiateViewControllerWithIdentifier("PastMemes") as? PastMemesViewController {
+        if let target = storyboard?.instantiateViewControllerWithIdentifier("PastMemesTabs") as? UIViewController {
             navigationController?.pushViewController(target, animated: true)
         }
     }

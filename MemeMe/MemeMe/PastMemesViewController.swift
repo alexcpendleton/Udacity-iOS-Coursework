@@ -18,7 +18,7 @@ public class PastMemesViewController : UIViewController, UITableViewDataSource {
     
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        memes = SharedMemePersister.defaultPersister().all()
+        memes = AppDelegate.defaultMemeRepository().all()
     }
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
