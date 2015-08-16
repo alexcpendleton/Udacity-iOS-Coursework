@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public class PastMemesViewController : UIViewController, UITableViewDataSource {
+public class PastMemesViewController : UIViewController, UITableViewDataSource, UICollectionViewDataSource {
 
     public var memes = [MemeModel]()
     public let cellIdentifier = "MemeCell"
@@ -35,4 +35,18 @@ public class PastMemesViewController : UIViewController, UITableViewDataSource {
         return cell!
     }
     
+    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return memes.count
+    }
+    
+    // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        var currentMeme = memes[indexPath.row]
+        var cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier, forIndexPath: indexPath)
+            as? UICollectionViewCell
+        
+        cell?.contentView.insertSubview(UIImageView(image:currentMeme.appliedImage!)
+, atIndex: 0)
+        return cell!
+    }
 }
