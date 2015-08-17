@@ -15,11 +15,12 @@
                     </navigationBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Pj8-tT-r4y"/>
+                        <segue destination="34h-mR-uby" kind="show" id="pa2-h1-Grn"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="grD-Fz-3m7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-409" y="330"/>
+            <point key="canvasLocation" x="-773" y="358"/>
         </scene>
         <!--Make a Meme-->
         <scene sceneID="tne-QT-ifu">
@@ -145,8 +146,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="MZW-OG-vvA"/>
-                    <navigationItem key="navigationItem" title="Saved Memes" id="MUv-Uq-m1Y"/>
+                    <tabBarItem key="tabBarItem" title="" image="Table" id="MZW-OG-vvA"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="targetTableView" destination="jsG-sb-I0O" id="VYH-vc-5y6"/>
@@ -187,11 +187,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SIM-zJ-4ug">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SIM-zJ-4ug">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Xrf-no-WAz">
-                                    <size key="itemSize" width="210" height="188"/>
+                                    <size key="itemSize" width="139" height="141"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -201,11 +201,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="210" height="188"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="139" height="141"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="72q-TR-Ekf">
-                                                    <rect key="frame" x="23" y="19" width="164" height="150"/>
+                                                    <rect key="frame" x="8" y="8" width="125" height="125"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -221,12 +221,22 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="SIM-zJ-4ug" firstAttribute="top" secondItem="bXc-tx-3Zb" secondAttribute="bottom" id="7bp-gQ-BQr"/>
+                            <constraint firstItem="9qo-Fx-lKn" firstAttribute="top" secondItem="SIM-zJ-4ug" secondAttribute="bottom" id="9Ox-CS-2rJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="SIM-zJ-4ug" secondAttribute="trailing" constant="-16" id="ENI-uw-vKx"/>
+                            <constraint firstItem="SIM-zJ-4ug" firstAttribute="leading" secondItem="Wev-2F-k9L" secondAttribute="leadingMargin" constant="-16" id="SBR-BM-Ed4"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="z6t-hv-6nq"/>
+                    <tabBarItem key="tabBarItem" title="" image="Collection" id="z6t-hv-6nq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BXg-Ws-yG0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-519" y="1788"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Collection" width="30" height="30"/>
+        <image name="Table" width="30" height="30"/>
+    </resources>
 </document>
