@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 public class MemeModel : NSObject {
-    public init(top:String, bottom:String, original: UIImage, applied: UIImage) {
+    public override init() {}
+    public init(top:String, bottom:String, original: UIImage?, applied: UIImage?) {
         self.topText = top
         self.bottomText = bottom
         self.originalImage = original
@@ -18,7 +19,7 @@ public class MemeModel : NSObject {
     }
     public var topText: String = ""
     public var bottomText: String = ""
-    public var originalImage: UIImage!
-    public var appliedImage: UIImage!
+    public var originalImage: UIImage?
+    public var appliedImage: UIImage?
     
 }

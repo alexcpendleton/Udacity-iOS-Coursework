@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public class PastMemesViewController : UIViewController, UITableViewDataSource, UICollectionViewDataSource {
+public class PastMemesViewController : UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     public var memes = [MemeModel]()
     public let cellIdentifier = "MemeCell"
@@ -19,6 +19,19 @@ public class PastMemesViewController : UIViewController, UITableViewDataSource, 
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         memes = AppDelegate.defaultMemeRepository().all()
+    }
+    
+    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var currentMeme = memes[indexPath.row]
+        PastMemesViewController.presentViewMeme(currentMeme, storyboard: storyboard, navigationController: navigationController)
+    }
+    
+    public static func presentViewMeme(toLoad:MemeModel, storyboard:UIStoryboard?, navigationController:UINavigationController?) {
+        if let target = storyboard?.instantiateViewControllerWithIdentifier("MemeDetail") as? PickerViewController {
+            navigationController?.pushViewController(target, animated: true)
+            target.isInEditMode = false
+            target.sourceMeme = toLoad
+        }
     }
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -32,21 +45,6 @@ public class PastMemesViewController : UIViewController, UITableViewDataSource, 
         
         cell?.textLabel?.text = currentMeme.topText + " " + currentMeme.bottomText
         cell?.imageView?.image = currentMeme.appliedImage
-        return cell!
-    }
-    
-    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return memes.count
-    }
-    
-    // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
-    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var currentMeme = memes[indexPath.row]
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier, forIndexPath: indexPath)
-            as? UICollectionViewCell
-        
-        cell?.contentView.insertSubview(UIImageView(image:currentMeme.appliedImage!)
-, atIndex: 0)
         return cell!
     }
 }

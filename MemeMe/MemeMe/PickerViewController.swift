@@ -18,11 +18,45 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     
     var repo: MemeRepository!
     
+    var sourceMeme:MemeModel = MemeModel(top: "TOPx", bottom: "BOTTOMx", original: nil, applied: nil)
+    
     let pickerDelegate:UITextFieldDelegate = MemeTextFieldDelegate()
     let cameraDelegate:UITextFieldDelegate = MemeTextFieldDelegate()
+    
+    internal var isInEditMode:Bool = true
+    
+    
+    internal func enterEditMode() {
+        setToolbarVisibility(false)
+        setTextFieldsEnabled(true)
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.rightBarButtonItem = cancelButton
+    }
+    
+    internal func enterViewMode() {
+        setToolbarVisibility(true)
+        setTextFieldsEnabled(false)
+        navigationItem.leftBarButtonItem = editButton
+        navigationItem.rightBarButtonItem = nil
+    }
+    
+    func setTextFieldsEnabled(enabled:Bool) {
+        topTextField.enabled = enabled
+        bottomTextField.enabled = enabled
+    }
+    
+    internal func loadMeme(toLoad:MemeModel) {
+        sourceMeme = toLoad
+        topTextField.text = toLoad.topText
+        bottomTextField.text = toLoad.bottomText
+        if toLoad.originalImage != nil {
+            mainImageView.image = toLoad.originalImage!
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +81,14 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
         subscribeToKeyboardNotifications()
         
         mainImageView.addObserver(self, forKeyPath: "image", options: nil, context: nil)
+        // Default state is "edit" mode, but it can be also be changed by the caller
+
+        if isInEditMode {
+            enterEditMode()
+        } else {
+            enterViewMode()
+        }
+        loadMeme(sourceMeme)
     }
     
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
@@ -107,7 +149,7 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
         ]
         field.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
         field.contentVerticalAlignment = UIControlContentVerticalAlignment.Center
-        //field.textAlignment = NSTextAlignment.Center
+        field.textAlignment = NSTextAlignment.Center
         field.defaultTextAttributes = memeTextAttributes
     }
 
@@ -128,7 +170,11 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBAction func cancelPressed(sender:AnyObject!) {
         presentPastMemes()
     }
-
+    
+    @IBAction func editPressed(sender:AnyObject!) {
+        enterEditMode()
+    }
+    
     func presentImageViewer(sourceType:UIImagePickerControllerSourceType) {
         let controller = UIImagePickerController()
         controller.delegate = self
@@ -166,7 +212,7 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     @IBAction func sharePressed(sender: AnyObject!) {
         let model = buildModelFromScreen()
-        var activityController = UIActivityViewController(activityItems: [model.appliedImage], applicationActivities: nil)
+        var activityController = UIActivityViewController(activityItems: [model.appliedImage!], applicationActivities: nil)
         activityController.completionWithItemsHandler = { activity, success, items, error in
             if success {
                 self.save(model)
@@ -179,8 +225,11 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func buildModelFromScreen() -> MemeModel {
-        return MemeModel(top: topTextField.text!, bottom:bottomTextField.text!,
-            original: mainImageView.image!, applied: generateAppliedImage())
+        sourceMeme.topText = topTextField.text
+        sourceMeme.bottomText = bottomTextField.text
+        sourceMeme.originalImage = mainImageView.image!
+        sourceMeme.appliedImage = generateAppliedImage()
+        return sourceMeme
     }
     
     func save(model:MemeModel) {
