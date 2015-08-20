@@ -26,12 +26,24 @@ public class PastMemesViewController : UIViewController, UITableViewDataSource, 
         PastMemesViewController.presentViewMeme(currentMeme, storyboard: storyboard, navigationController: navigationController)
     }
     
-    public static func presentViewMeme(toLoad:MemeModel, storyboard:UIStoryboard?, navigationController:UINavigationController?) {
+    public static func presentViewMeme(toLoad:MemeModel?, storyboard:UIStoryboard?, navigationController:UINavigationController?) {
+        presentMemeEditor(toLoad, inEditMode: false, storyboard: storyboard, navigationController: navigationController)
+        
+    }
+    
+    internal static func presentMemeEditor(toLoad:MemeModel?, inEditMode:Bool, storyboard:UIStoryboard?, navigationController:UINavigationController?) {
         if let target = storyboard?.instantiateViewControllerWithIdentifier("MemeDetail") as? PickerViewController {
             navigationController?.pushViewController(target, animated: true)
-            target.isInEditMode = false
-            target.sourceMeme = toLoad
+            target.isInEditMode = inEditMode
+            if toLoad != nil {
+                target.sourceMeme = toLoad!
+            }
         }
+    }
+    
+    public static func presentEditMeme(toLoad:MemeModel?, storyboard:UIStoryboard?, navigationController:UINavigationController?) {
+        presentMemeEditor(toLoad, inEditMode: true, storyboard: storyboard, navigationController: navigationController)
+        
     }
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

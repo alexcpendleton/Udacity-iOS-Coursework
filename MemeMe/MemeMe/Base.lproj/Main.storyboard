@@ -74,7 +74,7 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="php-ew-Jwv">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="php-ew-Jwv">
                                 <rect key="frame" x="136" y="165" width="329" height="270"/>
                             </imageView>
                         </subviews>
@@ -155,6 +155,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="Table" id="MZW-OG-vvA"/>
+                    <navigationItem key="navigationItem" id="JRu-89-0kv"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="targetTableView" destination="jsG-sb-I0O" id="VYH-vc-5y6"/>
@@ -164,11 +165,11 @@
             </objects>
             <point key="canvasLocation" x="-79" y="1070"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Sent Memes-->
         <scene sceneID="W0o-t2-0Zo">
             <objects>
-                <tabBarController storyboardIdentifier="PastMemesTabs" id="34h-mR-uby" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="78X-he-777"/>
+                <tabBarController storyboardIdentifier="PastMemesTabs" id="34h-mR-uby" customClass="SentMemesTabViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="Sent Memes" id="78X-he-777"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="gU2-dv-4om">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>

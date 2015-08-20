@@ -21,8 +21,11 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var editButton: UIBarButtonItem!
     
     var repo: MemeRepository!
-    
-    var sourceMeme:MemeModel = MemeModel(top: "TOPx", bottom: "BOTTOMx", original: nil, applied: nil)
+
+    var sourceMeme: MemeModel = {
+        // Default to these values if not otherwise set
+         return MemeModel(top: "TOP", bottom: "BOTTOM", original: nil, applied: nil)
+    }()
     
     let pickerDelegate:UITextFieldDelegate = MemeTextFieldDelegate()
     let cameraDelegate:UITextFieldDelegate = MemeTextFieldDelegate()
@@ -89,6 +92,7 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
             enterViewMode()
         }
         loadMeme(sourceMeme)
+        navigationItem.hidesBackButton = true
     }
     
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {

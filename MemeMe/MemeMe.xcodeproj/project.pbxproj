@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		490749181B8555A8005CBA8B /* SentMemesTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490749171B8555A8005CBA8B /* SentMemesTabViewController.swift */; };
 		4931B8E81B7EAEE000E67DF4 /* MemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4931B8E71B7EAEE000E67DF4 /* MemeModel.swift */; };
 		4931B8EA1B7EC17200E67DF4 /* InMemoryMemeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4931B8E91B7EC17200E67DF4 /* InMemoryMemeRepository.swift */; };
 		4931B8EC1B7ED64C00E67DF4 /* PastMemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4931B8EB1B7ED64C00E67DF4 /* PastMemesViewController.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		490749171B8555A8005CBA8B /* SentMemesTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMemesTabViewController.swift; sourceTree = "<group>"; };
 		4931B8E71B7EAEE000E67DF4 /* MemeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeModel.swift; sourceTree = "<group>"; };
 		4931B8E91B7EC17200E67DF4 /* InMemoryMemeRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryMemeRepository.swift; sourceTree = "<group>"; };
 		4931B8EB1B7ED64C00E67DF4 /* PastMemesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastMemesViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				494BA1BB1B8010E70020FAE2 /* MemeCollectionViewController.swift */,
 				494BA1B71B80037E0020FAE2 /* MemeRepository.swift */,
 				494BA1B91B800B400020FAE2 /* PrepopulatedTestRepo.swift */,
+				490749171B8555A8005CBA8B /* SentMemesTabViewController.swift */,
 			);
 			path = MemeMe;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				494BA1B81B80037E0020FAE2 /* MemeRepository.swift in Sources */,
 				4931B8EA1B7EC17200E67DF4 /* InMemoryMemeRepository.swift in Sources */,
 				4989E8DE1B796A820019B03E /* AppDelegate.swift in Sources */,
+				490749181B8555A8005CBA8B /* SentMemesTabViewController.swift in Sources */,
 				4931B8E81B7EAEE000E67DF4 /* MemeModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
