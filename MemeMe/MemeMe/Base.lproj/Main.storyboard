@@ -14,8 +14,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Pj8-tT-r4y"/>
                         <segue destination="34h-mR-uby" kind="show" id="pa2-h1-Grn"/>
+                        <segue destination="34h-mR-uby" kind="relationship" relationship="rootViewController" id="DJB-ed-Auj"/>
+                        <segue destination="BYZ-38-t0r" kind="show" id="faa-nr-Hn7"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="grD-Fz-3m7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -167,6 +168,7 @@
         <scene sceneID="W0o-t2-0Zo">
             <objects>
                 <tabBarController storyboardIdentifier="PastMemesTabs" id="34h-mR-uby" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="78X-he-777"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="gU2-dv-4om">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -246,4 +248,7 @@
         <image name="Collection" width="30" height="30"/>
         <image name="Table" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="pa2-h1-Grn"/>
+    </inferredMetricsTieBreakers>
 </document>
