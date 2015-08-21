@@ -12,13 +12,14 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
 
     @IBOutlet weak var pickerButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
-    @IBOutlet weak var mainImageView: UIImageView!
-    @IBOutlet weak var topTextField: UITextField!
-    @IBOutlet weak var bottomTextField: UITextField!
+
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var editButton: UIBarButtonItem!
+    @IBOutlet weak var memeViewContainer: UIView!
+    
+    var memeView: MemeView!
     
     var repo: MemeRepository!
 
@@ -27,8 +28,6 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
          return MemeModel(top: "TOP", bottom: "BOTTOM", original: nil, applied: nil)
     }()
     
-    let pickerDelegate:UITextFieldDelegate = MemeTextFieldDelegate()
-    let cameraDelegate:UITextFieldDelegate = MemeTextFieldDelegate()
     
     internal var isInEditMode:Bool = true
     
@@ -48,21 +47,16 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func setTextFieldsEnabled(enabled:Bool) {
-        topTextField.enabled = enabled
-        bottomTextField.enabled = enabled
+        memeView.setEditable(enabled)
     }
     
     internal func loadMeme(toLoad:MemeModel) {
-        sourceMeme = toLoad
-        topTextField.text = toLoad.topText
-        bottomTextField.text = toLoad.bottomText
-        if toLoad.originalImage != nil {
-            mainImageView.image = toLoad.originalImage!
-        }
+        memeView.load(toLoad)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
         // I'd much rather be injecting this somehow but this seems like
         // the more "standard" and less painful way to put dependencies
         // into ViewControllers in Swift. A much more comfortable way would
@@ -73,17 +67,7 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         shareButton.enabled = false
         
-        // Each has its own "edited" state, thus the separate instances
-        // and not implementing the delegate here in the VC
-        topTextField.delegate = pickerDelegate
-        bottomTextField.delegate = cameraDelegate
-        
-        setAppearanceOfTextField(topTextField)
-        setAppearanceOfTextField(bottomTextField)
-        
         subscribeToKeyboardNotifications()
-        
-        mainImageView.addObserver(self, forKeyPath: "image", options: nil, context: nil)
         // Default state is "edit" mode, but it can be also be changed by the caller
 
         if isInEditMode {
@@ -93,6 +77,24 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         loadMeme(sourceMeme)
         navigationItem.hidesBackButton = true
+    }
+    func setup() {
+        memeView = loadViewFromNib()
+        
+        memeViewContainer.frame = memeView.bounds
+        memeViewContainer.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
+        
+        memeView.imageView?.addObserver(self, forKeyPath: "image", options: nil, context: nil)
+        memeViewContainer.addSubview(memeView)
+    }
+    
+    func loadViewFromNib() -> MemeView {
+        
+        let bundle = NSBundle(forClass: self.dynamicType)
+        let nib = UINib(nibName: MemeView.nibName, bundle: bundle)
+        let result = nib.instantiateWithOwner(self, options: nil)[0] as! MemeView
+        
+        return result
     }
     
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
@@ -143,19 +145,6 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
         return keyboardSize.CGRectValue().height
     }
-    
-    func setAppearanceOfTextField(field:UITextField) {
-        let memeTextAttributes = [
-            NSStrokeColorAttributeName : UIColor.blackColor(),
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            NSStrokeWidthAttributeName : 4.0,
-        ]
-        field.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
-        field.contentVerticalAlignment = UIControlContentVerticalAlignment.Center
-        field.textAlignment = NSTextAlignment.Center
-        field.defaultTextAttributes = memeTextAttributes
-    }
 
     @IBAction func pickerPressed(sender:AnyObject!) {
         // Question for reviewer (or later research):
@@ -187,7 +176,7 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func showImage(image:UIImage) {
-        mainImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        var mainImageView = memeView.imageView!
         mainImageView.image = image
     }
     
@@ -229,9 +218,9 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func buildModelFromScreen() -> MemeModel {
-        sourceMeme.topText = topTextField.text
-        sourceMeme.bottomText = bottomTextField.text
-        sourceMeme.originalImage = mainImageView.image!
+        sourceMeme.topText = memeView.topTextField.text
+        sourceMeme.bottomText = memeView.bottomTextField.text
+        sourceMeme.originalImage = memeView.imageView.image!
         sourceMeme.appliedImage = generateAppliedImage()
         return sourceMeme
     }
