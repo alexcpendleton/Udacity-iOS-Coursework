@@ -19,6 +19,9 @@ public class PastMemesViewController : UIViewController, UITableViewDataSource, 
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         memes = AppDelegate.defaultMemeRepository().all()
+        // If we come back from editing or making a 
+        // meme we want to make sure the data is fresh
+        targetTableView.reloadData()
     }
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

@@ -53,17 +53,15 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     internal func enterEditMode() {
         setToolbarVisibility(false)
+        setToolbarButtonsEnabled(true)
         setTextFieldsEnabled(true)
         navigationItem.leftBarButtonItem = nil
         navigationItem.rightBarButtonItem = cancelButton
-        // We don't want to clear out the already entered
-        // texts while we're editing existing memes
-        bottomTextFieldDelegate.hasChanged = true
-        topTextFieldDelegate.hasChanged = true
     }
     
     internal func enterViewMode() {
-        setToolbarVisibility(true)
+        setToolbarVisibility(false)
+        setToolbarButtonsEnabled(false)
         setTextFieldsEnabled(false)
         navigationItem.leftBarButtonItem = editButton
         navigationItem.rightBarButtonItem = cancelButton
@@ -90,7 +88,6 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
         // the more "standard" and less painful way to put dependencies
         // into ViewControllers in Swift. A much more comfortable way would
         // be to use constructor injection.
-        navigationController?.navigationBarHidden = false
         repo = AppDelegate.defaultMemeRepository()
         
         cameraButton.enabled = isCameraAvailable()
@@ -106,12 +103,14 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         
         loadMeme(sourceMeme)
-        navigationItem.hidesBackButton = true
+        navigationController?.navigationBarHidden = false
+        navigationItem.hidesBackButton = false
 
         topTextField.delegate = topTextFieldDelegate
         bottomTextField.delegate = bottomTextFieldDelegate
         setAppearanceOfTextField(topTextField)
         setAppearanceOfTextField(bottomTextField)
+        
     }
     
     func setAppearanceOfTextField(field:UITextField) {
@@ -131,12 +130,8 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.view.bringSubviewToFront(field)
     }
     
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
-        // Checks for the presence of an image and enables the Share
-        // activity button if one exists
-        if keyPath == "image" {
-            shareButton.enabled = true
-        }
+    func hasSelectedImage() -> Bool {
+        return mainImageView.image != nil
     }
     
     func notificationCenter() -> NSNotificationCenter {
@@ -158,9 +153,13 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func setToolbarVisibility(hidden: Bool) {
-        pickerButton.enabled = !hidden
-        cameraButton.enabled = !hidden && isCameraAvailable()
-        shareButton.enabled = !hidden
+        toolbar.hidden = hidden
+    }
+    
+    func setToolbarButtonsEnabled(enabled: Bool) {
+        pickerButton.enabled = enabled
+        cameraButton.enabled = enabled && isCameraAvailable()
+        shareButton.enabled = enabled && hasSelectedImage()
     }
     
     func setVisibilityOfTertiaryElements(hidden: Bool) {
@@ -215,6 +214,7 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func showImage(image:UIImage) {
         mainImageView.image = image
+        shareButton.enabled = hasSelectedImage()
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
@@ -230,8 +230,14 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     internal func generateAppliedImage() -> UIImage {
         setVisibilityOfTertiaryElements(true)
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        self.view.drawViewHierarchyInRect(self.view.frame,
+        // If they still have the cursor in the text field
+        // it will appear in the final image
+        topTextField.resignFirstResponder()
+        bottomTextField.resignFirstResponder()
+        
+        var targetFrameElement = self.view
+        UIGraphicsBeginImageContext(targetFrameElement.frame.size)
+        self.view.drawViewHierarchyInRect(targetFrameElement.frame,
             afterScreenUpdates: true)
         let result : UIImage =
         UIGraphicsGetImageFromCurrentImageContext()

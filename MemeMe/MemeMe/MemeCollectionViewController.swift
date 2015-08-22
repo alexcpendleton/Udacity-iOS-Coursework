@@ -20,16 +20,17 @@ import UIKit
 
 public class MemeCollectionViewController : UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     // For future reference: http://www.raywenderlich.com/78550/beginning-ios-collection-views-swift-part-1
-    public var memes = {
-        // Lazy load these from the default repo if they aren't 
-        // explicitly set
-        AppDelegate.defaultMemeRepository().all()
-    }()
+    public var memes = [MemeModel]()
+    @IBOutlet weak var targetCollectionView: UICollectionView!
     
     public let cellIdentifier = "MemeCell"
     
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        // If we're coming back after editing or
+        // adding a meme we want fresh data
+        memes = AppDelegate.defaultMemeRepository().all()
+        targetCollectionView.reloadData()
     }
     
     public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {

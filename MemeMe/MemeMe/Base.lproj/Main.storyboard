@@ -255,6 +255,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="Collection" id="z6t-hv-6nq"/>
+                    <connections>
+                        <outlet property="targetCollectionView" destination="SIM-zJ-4ug" id="i3u-T2-sFZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BXg-Ws-yG0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
