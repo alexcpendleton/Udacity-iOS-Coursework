@@ -21,6 +21,8 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
     
+    var topTextFieldDelegate = MemeTextFieldDelegate()
+    var bottomTextFieldDelegate = MemeTextFieldDelegate()
     
     var repo: MemeRepository!
 
@@ -82,6 +84,10 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         loadMeme(sourceMeme)
         navigationItem.hidesBackButton = true
+
+        topTextField.delegate = topTextFieldDelegate
+        self.view.bringSubviewToFront(topTextField)
+        
     }
     
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
