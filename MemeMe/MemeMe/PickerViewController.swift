@@ -52,7 +52,8 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func setTextFieldsEnabled(enabled:Bool) {
-
+        topTextField.enabled = enabled
+        bottomTextField.enabled = enabled
     }
     
     internal func loadMeme(toLoad:MemeModel) {
@@ -90,9 +91,26 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
 
         topTextField.delegate = topTextFieldDelegate
         bottomTextField.delegate = bottomTextFieldDelegate
+        setAppearanceOfTextField(topTextField)
+        setAppearanceOfTextField(bottomTextField)
         self.view.bringSubviewToFront(topTextField)
         self.view.bringSubviewToFront(bottomTextField)
-        
+    }
+    
+    func setAppearanceOfTextField(field:UITextField) {
+        let memeTextAttributes = [
+            NSStrokeColorAttributeName : UIColor.blackColor(),
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 42)!,
+            NSStrokeWidthAttributeName : -4.0,
+        ]
+        field.defaultTextAttributes = memeTextAttributes
+        // Default text attributes have to be applied before applying any other changes
+        // or it will overwrite them
+        field.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
+        field.contentVerticalAlignment = UIControlContentVerticalAlignment.Center
+        field.textAlignment = NSTextAlignment.Center
+        field.autocapitalizationType = UITextAutocapitalizationType.AllCharacters
     }
     
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
