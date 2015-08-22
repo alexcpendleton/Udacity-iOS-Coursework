@@ -55,7 +55,6 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         setup()
         // I'd much rather be injecting this somehow but this seems like
         // the more "standard" and less painful way to put dependencies
@@ -77,13 +76,14 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         loadMeme(sourceMeme)
         navigationItem.hidesBackButton = true
+        super.viewDidLoad()
+        
     }
     func setup() {
         memeView = loadViewFromNib()
         
-        memeViewContainer.frame = memeView.bounds
-        memeViewContainer.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
-        
+        //memeViewContainer.frame = memeView.bounds
+        //memeViewContainer.autoresizingMask = NSString
         memeView.imageView?.addObserver(self, forKeyPath: "image", options: nil, context: nil)
         memeViewContainer.addSubview(memeView)
     }
@@ -122,7 +122,9 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func setToolbarVisibility(hidden: Bool) {
-        toolbar.hidden = hidden
+        pickerButton.enabled = !hidden
+        cameraButton.enabled = !hidden
+        shareButton.enabled = !hidden
     }
     
     func setVisibilityOfTertiaryElements(hidden: Bool) {
