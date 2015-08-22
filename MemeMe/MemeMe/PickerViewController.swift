@@ -48,7 +48,7 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
         setToolbarVisibility(true)
         setTextFieldsEnabled(false)
         navigationItem.leftBarButtonItem = editButton
-        navigationItem.rightBarButtonItem = nil
+        navigationItem.rightBarButtonItem = cancelButton
     }
     
     func setTextFieldsEnabled(enabled:Bool) {
@@ -86,6 +86,7 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
         } else {
             enterViewMode()
         }
+        
         loadMeme(sourceMeme)
         navigationItem.hidesBackButton = true
 
@@ -250,8 +251,7 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func presentPastMemes() {
-        if let target = storyboard?.instantiateViewControllerWithIdentifier("PastMemesTabs") as? UIViewController {
-            navigationController?.pushViewController(target, animated: true)
-        }
+        navigationController?.popViewControllerAnimated(true)
+        return
     }
 }
