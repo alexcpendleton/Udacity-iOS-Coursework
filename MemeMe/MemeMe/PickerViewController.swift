@@ -19,6 +19,7 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var editButton: UIBarButtonItem!
     
     @IBOutlet weak var mainImageView: UIImageView!
+    @IBOutlet weak var topTextField: UITextField!
     
     
     var repo: MemeRepository!
@@ -52,9 +53,15 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     internal func loadMeme(toLoad:MemeModel) {
         mainImageView.image = toLoad.originalImage
+        topTextField.text = toLoad.topText
+    }
+    
+    func isCameraAvailable() -> Bool {
+        return UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         // I'd much rather be injecting this somehow but this seems like
         // the more "standard" and less painful way to put dependencies
         // into ViewControllers in Swift. A much more comfortable way would
@@ -62,7 +69,7 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
         navigationController?.navigationBarHidden = false
         repo = AppDelegate.defaultMemeRepository()
         
-        cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        cameraButton.enabled = isCameraAvailable()
         shareButton.enabled = false
         
         subscribeToKeyboardNotifications()
@@ -75,7 +82,6 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         loadMeme(sourceMeme)
         navigationItem.hidesBackButton = true
-        super.viewDidLoad()
     }
     
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
@@ -106,7 +112,7 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func setToolbarVisibility(hidden: Bool) {
         pickerButton.enabled = !hidden
-        cameraButton.enabled = !hidden
+        cameraButton.enabled = !hidden && isCameraAvailable()
         shareButton.enabled = !hidden
     }
     
