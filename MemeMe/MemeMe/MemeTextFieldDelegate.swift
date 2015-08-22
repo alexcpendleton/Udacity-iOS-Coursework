@@ -19,9 +19,11 @@ public class MemeTextFieldDelegate : NSObject, UITextFieldDelegate {
             hasChanged = true
         }
     }
+    
     public func textFieldShouldReturn(textField: UITextField) -> Bool {
         return true
     }
+    
     public func textFieldDidEndEditing(textField: UITextField) {
         if capitalizeAfterEdit {
             textField.text = textField.text.uppercaseString

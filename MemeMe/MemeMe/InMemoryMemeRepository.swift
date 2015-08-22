@@ -10,10 +10,18 @@ import Foundation
 import UIKit
 
 public class InMemoryMemeRepository : NSObject, MemeRepository {
+    
     var persisted = [MemeModel]()
+    
     public func persist(toPersist:MemeModel) {
-        persisted.append(toPersist)
+        // Don't re-add edited memes, just let the changes take place
+        if !contains(persisted, { (element) -> Bool in
+        return element == toPersist
+        }) {
+            persisted.append(toPersist)
+        }
     }
+    
     public func all() -> [MemeModel] {
         return persisted
     }
