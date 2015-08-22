@@ -21,6 +21,8 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
     
+    @IBOutlet weak var bottomTextField: UITextField!
+    
     var topTextFieldDelegate = MemeTextFieldDelegate()
     var bottomTextFieldDelegate = MemeTextFieldDelegate()
     
@@ -56,6 +58,7 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     internal func loadMeme(toLoad:MemeModel) {
         mainImageView.image = toLoad.originalImage
         topTextField.text = toLoad.topText
+        bottomTextField.text = toLoad.bottomText
     }
     
     func isCameraAvailable() -> Bool {
@@ -86,7 +89,9 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
         navigationItem.hidesBackButton = true
 
         topTextField.delegate = topTextFieldDelegate
+        bottomTextField.delegate = bottomTextFieldDelegate
         self.view.bringSubviewToFront(topTextField)
+        self.view.bringSubviewToFront(bottomTextField)
         
     }
     
@@ -214,8 +219,8 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func buildModelFromScreen() -> MemeModel {
-        sourceMeme.topText = "unhardcode me"// memeView.topTextField.text
-        sourceMeme.bottomText = "unhardcode me"// memeView.bottomTextField.text
+        sourceMeme.topText = topTextField.text
+        sourceMeme.bottomText = bottomTextField.text
         sourceMeme.originalImage = mainImageView.image
         sourceMeme.appliedImage = generateAppliedImage()
         return sourceMeme
