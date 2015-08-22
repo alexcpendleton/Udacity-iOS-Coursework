@@ -46,7 +46,6 @@ public class MemeCollectionViewController : UIViewController, UICollectionViewDa
         var currentMeme = memes[indexPath.row]
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier, forIndexPath: indexPath)
             as? MemeCollectionViewCell
-        cell?.backgroundColor = UIColor.redColor()
         cell?.image?.image = currentMeme.appliedImage!
         return cell!
     }

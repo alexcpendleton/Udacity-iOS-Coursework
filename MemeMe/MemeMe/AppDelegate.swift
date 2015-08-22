@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private static var memeRepo:MemeRepository!
     internal static func defaultMemeRepository() -> MemeRepository {
         if memeRepo == nil {
-            //memeRepo = InMemoryMemeRepository()
-            memeRepo = PrepopulatedTestRepo()
+            memeRepo = InMemoryMemeRepository()
+            //memeRepo = PrepopulatedTestRepo()
         }
         return memeRepo
     }

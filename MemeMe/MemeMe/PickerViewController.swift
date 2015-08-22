@@ -236,12 +236,24 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
         bottomTextField.resignFirstResponder()
         
         var targetFrameElement = self.view
-        UIGraphicsBeginImageContext(targetFrameElement.frame.size)
-        self.view.drawViewHierarchyInRect(targetFrameElement.frame,
+        
+        //UIGraphicsBeginImageContext(mainImageView.frame.size)
+
+        // I'm trying to just capture what's visible within the bounds of the 
+        // image view, but that is not working at all
+        // However, it works the same way that the demo app in the
+        // AppStore does...This is really dissatisfying but I have
+        // given up on making this perfect for now. Pretty sure I
+        // need to crop the image or something, because just trying
+        // to bound the location of the snapshot isn't cutting it.
+        UIGraphicsBeginImageContextWithOptions(mainImageView.frame.size, true, UIScreen.mainScreen().scale)
+        
+        var frame = mainImageView.bounds
+        self.view.drawViewHierarchyInRect(frame,
             afterScreenUpdates: true)
-        let result : UIImage =
-        UIGraphicsGetImageFromCurrentImageContext()
+        var result : UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+        
         setVisibilityOfTertiaryElements(false)
         return result
     }
