@@ -132,13 +132,13 @@
         <!--Past Memes View Controller-->
         <scene sceneID="kNG-wU-RvV">
             <objects>
-                <viewController storyboardIdentifier="PastMemes" title="Saved Memes" automaticallyAdjustsScrollViewInsets="NO" id="kXX-yf-j6w" userLabel="Past Memes View Controller" customClass="PastMemesViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PastMemes" title="Sent Memes" automaticallyAdjustsScrollViewInsets="NO" id="kXX-yf-j6w" userLabel="Past Memes View Controller" customClass="PastMemesViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="27v-Rh-9MQ"/>
                         <viewControllerLayoutGuide type="bottom" id="kcs-uE-xmN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dF9-QQ-9y6">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jsG-sb-I0O">
@@ -171,6 +171,7 @@
                     <tabBarItem key="tabBarItem" title="" image="Table" id="MZW-OG-vvA"/>
                     <navigationItem key="navigationItem" title="Sent Memes" id="JRu-89-0kv"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="targetTableView" destination="jsG-sb-I0O" id="VYH-vc-5y6"/>
                     </connections>
@@ -182,11 +183,12 @@
         <!--Sent Memes-->
         <scene sceneID="W0o-t2-0Zo">
             <objects>
-                <tabBarController storyboardIdentifier="PastMemesTabs" automaticallyAdjustsScrollViewInsets="NO" id="34h-mR-uby" customClass="SentMemesTabViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="PastMemesTabs" title="Sent Memes" automaticallyAdjustsScrollViewInsets="NO" id="34h-mR-uby" customClass="SentMemesTabViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Sent Memes" id="78X-he-777"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="gU2-dv-4om">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="gU2-dv-4om">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -209,10 +211,10 @@
                         <viewControllerLayoutGuide type="bottom" id="9qo-Fx-lKn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Wev-2F-k9L">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SIM-zJ-4ug">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SIM-zJ-4ug">
                                 <rect key="frame" x="32" y="80" width="536" height="471"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Xrf-no-WAz">
