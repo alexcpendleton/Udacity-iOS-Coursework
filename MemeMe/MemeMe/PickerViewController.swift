@@ -17,9 +17,9 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var editButton: UIBarButtonItem!
-    @IBOutlet weak var memeViewContainer: UIView!
     
-    var memeView: MemeView!
+    @IBOutlet weak var mainImageView: UIImageView!
+    
     
     var repo: MemeRepository!
 
@@ -47,15 +47,14 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func setTextFieldsEnabled(enabled:Bool) {
-        memeView.setEditable(enabled)
+
     }
     
     internal func loadMeme(toLoad:MemeModel) {
-        memeView.load(toLoad)
+        mainImageView.image = toLoad.originalImage
     }
     
     override func viewDidLoad() {
-        setup()
         // I'd much rather be injecting this somehow but this seems like
         // the more "standard" and less painful way to put dependencies
         // into ViewControllers in Swift. A much more comfortable way would
@@ -77,27 +76,11 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
         loadMeme(sourceMeme)
         navigationItem.hidesBackButton = true
         super.viewDidLoad()
-        
-    }
-    func setup() {
-        memeView = loadViewFromNib()
-        
-        //memeViewContainer.frame = memeView.bounds
-        //memeViewContainer.autoresizingMask = NSString
-        memeView.imageView?.addObserver(self, forKeyPath: "image", options: nil, context: nil)
-        memeViewContainer.addSubview(memeView)
-    }
-    
-    func loadViewFromNib() -> MemeView {
-        
-        let bundle = NSBundle(forClass: self.dynamicType)
-        let nib = UINib(nibName: MemeView.nibName, bundle: bundle)
-        let result = nib.instantiateWithOwner(self, options: nil)[0] as! MemeView
-        
-        return result
     }
     
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+        // Checks for the presence of an image and enables the Share
+        // activity button if one exists
         if keyPath == "image" {
             shareButton.enabled = true
         }
@@ -178,7 +161,6 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func showImage(image:UIImage) {
-        var mainImageView = memeView.imageView!
         mainImageView.image = image
     }
     
@@ -220,9 +202,9 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func buildModelFromScreen() -> MemeModel {
-        sourceMeme.topText = memeView.topTextField.text
-        sourceMeme.bottomText = memeView.bottomTextField.text
-        sourceMeme.originalImage = memeView.imageView.image!
+        sourceMeme.topText = "unhardcode me"// memeView.topTextField.text
+        sourceMeme.bottomText = "unhardcode me"// memeView.bottomTextField.text
+        sourceMeme.originalImage = mainImageView.image
         sourceMeme.appliedImage = generateAppliedImage()
         return sourceMeme
     }

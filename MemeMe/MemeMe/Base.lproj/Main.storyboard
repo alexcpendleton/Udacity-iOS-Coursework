@@ -35,7 +35,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VRa-vS-Y3E">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VRa-vS-Y3E">
                                 <rect key="frame" x="0.0" y="492" width="600" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="SSh-J4-P7q"/>
@@ -60,42 +60,21 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iax-Dx-hsA" userLabel="[MemeViewContainer]">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CzI-eB-SaH">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="600" id="FUZ-Nl-Z5X"/>
-                                    <constraint firstAttribute="height" constant="492" id="q0l-uj-Aoc"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="FUZ-Nl-Z5X"/>
-                                        <exclude reference="q0l-uj-Aoc"/>
-                                    </mask>
-                                </variation>
-                            </view>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Iax-Dx-hsA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="1DA-2o-ego"/>
-                            <constraint firstItem="Iax-Dx-hsA" firstAttribute="leading" secondItem="VRa-vS-Y3E" secondAttribute="leading" id="6yX-rK-gBp"/>
-                            <constraint firstItem="Iax-Dx-hsA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ctq-g0-Q8O"/>
-                            <constraint firstItem="Iax-Dx-hsA" firstAttribute="bottom" secondItem="VRa-vS-Y3E" secondAttribute="top" id="Fl9-iC-6Fl"/>
-                            <constraint firstItem="Iax-Dx-hsA" firstAttribute="trailing" secondItem="VRa-vS-Y3E" secondAttribute="trailing" id="HN6-QT-nzP"/>
-                            <constraint firstAttribute="trailing" secondItem="Iax-Dx-hsA" secondAttribute="trailing" id="TSQ-v2-m0E"/>
+                            <constraint firstItem="CzI-eB-SaH" firstAttribute="bottom" secondItem="VRa-vS-Y3E" secondAttribute="top" id="3Kf-g2-pDn"/>
+                            <constraint firstAttribute="trailing" secondItem="CzI-eB-SaH" secondAttribute="trailing" id="47l-CQ-eeT"/>
+                            <constraint firstItem="CzI-eB-SaH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="OOl-G0-mJa"/>
+                            <constraint firstItem="CzI-eB-SaH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Plw-gL-9ka"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VRa-vS-Y3E" secondAttribute="bottom" id="YwF-IJ-DPZ"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VRa-vS-Y3E" secondAttribute="bottom" id="mSn-J0-UzQ"/>
+                            <constraint firstItem="CzI-eB-SaH" firstAttribute="trailing" secondItem="VRa-vS-Y3E" secondAttribute="trailing" id="nox-CK-Llh"/>
+                            <constraint firstItem="CzI-eB-SaH" firstAttribute="leading" secondItem="VRa-vS-Y3E" secondAttribute="leading" id="vft-l0-46o"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="1DA-2o-ego"/>
-                                <exclude reference="6yX-rK-gBp"/>
-                                <exclude reference="Ctq-g0-Q8O"/>
-                                <exclude reference="Fl9-iC-6Fl"/>
-                                <exclude reference="HN6-QT-nzP"/>
-                                <exclude reference="TSQ-v2-m0E"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Make a Meme" id="JeQ-az-jRy">
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="0j7-Qy-2K6">
@@ -114,8 +93,7 @@
                         <outlet property="cameraButton" destination="Xcr-Mr-eXk" id="eNN-Js-Lc5"/>
                         <outlet property="cancelButton" destination="XXy-Sa-QHr" id="PKf-5t-zM3"/>
                         <outlet property="editButton" destination="0j7-Qy-2K6" id="TsZ-6V-y7Q"/>
-                        <outlet property="memeView" destination="Iax-Dx-hsA" id="JdA-6f-jPd"/>
-                        <outlet property="memeViewContainer" destination="Iax-Dx-hsA" id="lWq-Ne-QDa"/>
+                        <outlet property="mainImageView" destination="CzI-eB-SaH" id="kxi-hE-cNb"/>
                         <outlet property="pickerButton" destination="GFB-5j-Omq" id="zWq-nu-cv5"/>
                         <outlet property="shareButton" destination="wOy-pl-QQG" id="Nc9-HE-b05"/>
                         <outlet property="toolbar" destination="VRa-vS-Y3E" id="eO3-uH-oG9"/>
