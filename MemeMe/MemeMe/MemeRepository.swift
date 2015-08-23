@@ -10,5 +10,6 @@ import Foundation
 
 public protocol MemeRepository {
     func persist(toPersist:MemeModel)
+    func remove(toRemove:MemeModel)
     func all() -> [MemeModel]
 }

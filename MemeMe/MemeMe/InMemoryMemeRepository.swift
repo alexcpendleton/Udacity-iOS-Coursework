@@ -16,9 +16,19 @@ public class InMemoryMemeRepository : NSObject, MemeRepository {
     public func persist(toPersist:MemeModel) {
         // Don't re-add edited memes, just let the changes take place
         if !contains(persisted, { (element) -> Bool in
-        return element == toPersist
+        return element === toPersist
         }) {
             persisted.append(toPersist)
+        }
+    }
+    
+    public func remove(toRemove:MemeModel) {
+        if contains(persisted, { (element) -> Bool in
+            return element === toRemove
+        }) {
+            // Remove the element if it exists (by filtering the list)
+            // http://stackoverflow.com/a/30829144
+            persisted = persisted.filter() { $0 !== toRemove }
         }
     }
     

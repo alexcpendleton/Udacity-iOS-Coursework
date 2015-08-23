@@ -40,6 +40,7 @@ public class PastMemesViewController : UIViewController, UITableViewDataSource, 
             target.isInEditMode = inEditMode
             if toLoad != nil {
                 target.sourceMeme = toLoad!
+                target.canDelete = true
             }
         }
     }

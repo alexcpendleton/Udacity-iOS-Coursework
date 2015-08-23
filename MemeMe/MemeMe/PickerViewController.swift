@@ -41,10 +41,14 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     @IBOutlet weak var bottomTextField: UITextField!
     
+    var deleteButton: UIBarButtonItem?
+    
     var topTextFieldDelegate = MemeTextFieldDelegate()
     var bottomTextFieldDelegate = MemeTextFieldDelegate()
     var repo: MemeRepository!
     internal var isInEditMode:Bool = true
+    
+    var canDelete: Bool = false
     
     var sourceMeme: MemeModel = {
         // Default to these values if not otherwise set
@@ -110,6 +114,14 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
         bottomTextField.delegate = bottomTextFieldDelegate
         setAppearanceOfTextField(topTextField)
         setAppearanceOfTextField(bottomTextField)
+        
+
+        if deleteButton == nil && canDelete {
+            deleteButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Trash, target: self, action: "deletePressed:")
+            
+            navigationItem.leftBarButtonItems = [editButton, deleteButton!]
+        }
+        
         
     }
     
@@ -212,6 +224,15 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     @IBAction func editPressed(sender:AnyObject!) {
         enterEditMode()
+    }
+    
+    @IBAction func deletePressed(sender:AnyObject!) {
+        deleteMeme();
+    }
+    
+    func deleteMeme() {
+        repo.remove(sourceMeme)
+        presentPastMemes()
     }
     
     func presentImageViewer(sourceType:UIImagePickerControllerSourceType) {

@@ -3,6 +3,17 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "MemeMe.PickerViewController.viewDidLoad (MemeMe.PickerViewController)() -&gt; ():PickerViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "navigationController?.navigationItem.leftBarButtonItems">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MemeMe.PickerViewController.loadMeme (MemeMe.PickerViewController)(MemeMe.MemeModel) -&gt; ():PickerViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "MemeMe.PickerViewController.setAppearanceOfTextField (MemeMe.PickerViewController)(ObjectiveC.UITextField) -&gt; ():PickerViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -17,9 +28,6 @@
                value = "self.parentViewController?.navigationController?.navigationItem">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "MemeMe.PickerViewController.loadMeme (MemeMe.PickerViewController)(MemeMe.MemeModel) -&gt; ():PickerViewController.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
