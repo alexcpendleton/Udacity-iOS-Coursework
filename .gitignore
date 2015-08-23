@@ -44,3 +44,5 @@ Carthage/Build
 
 # Holds API keys
 Secrets.swift
+
+FlickFinder/FlickFinder/Secrets.swift
