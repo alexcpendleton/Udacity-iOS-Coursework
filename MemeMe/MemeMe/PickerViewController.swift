@@ -115,14 +115,10 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
         setAppearanceOfTextField(topTextField)
         setAppearanceOfTextField(bottomTextField)
         
-
         if deleteButton == nil && canDelete {
             deleteButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Trash, target: self, action: "deletePressed:")
-            
             navigationItem.leftBarButtonItems = [editButton, deleteButton!]
         }
-        
-        
     }
     
     func setAppearanceOfTextField(field:UITextField) {

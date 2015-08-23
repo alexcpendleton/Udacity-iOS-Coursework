@@ -14,7 +14,6 @@ public class SentMemesTabViewController : UITabBarController {
     public override func viewDidAppear(animated: Bool) {
         var addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "makeANewMeme")
         navigationItem.rightBarButtonItem = addButton
-        
     }
 
     func makeANewMeme() {

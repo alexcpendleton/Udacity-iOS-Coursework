@@ -16,12 +16,29 @@ public class PastMemesViewController : UIViewController, UITableViewDataSource, 
     
     @IBOutlet var targetTableView: UITableView!
     
+    func reloadMemes() {
+        memes = AppDelegate.defaultMemeRepository().all()
+        targetTableView.reloadData()
+    }
+    
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        memes = AppDelegate.defaultMemeRepository().all()
         // If we come back from editing or making a 
         // meme we want to make sure the data is fresh
-        targetTableView.reloadData()
+        reloadMemes()
+        targetTableView.allowsMultipleSelectionDuringEditing = false
+        targetTableView.setEditing(false, animated: true)
+    }
+
+    public func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    public func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            AppDelegate.defaultMemeRepository().remove(memes[indexPath.row])
+            reloadMemes()
+        }
     }
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
