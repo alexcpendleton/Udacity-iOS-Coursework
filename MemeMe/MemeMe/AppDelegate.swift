@@ -17,12 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     internal static func defaultMemeRepository() -> MemeRepository {
         if memeRepo == nil {
             memeRepo = InMemoryMemeRepository()
-            //memeRepo = PrepopulatedTestRepo()
+            memeRepo = PrepopulatedTestRepo()
         }
         return memeRepo
     }
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {        return true
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        return true
     }
 
     func applicationWillResignActive(application: UIApplication) {

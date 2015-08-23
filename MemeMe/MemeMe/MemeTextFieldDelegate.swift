@@ -21,6 +21,10 @@ public class MemeTextFieldDelegate : NSObject, UITextFieldDelegate {
     }
     
     public func textFieldShouldReturn(textField: UITextField) -> Bool {
+        // Unfocus the text field on return
+        // Thanks! I noticed the focus was staying in the textboxes
+        // But wasn't sure what to do about it
+        textField.resignFirstResponder()
         return true
     }
     

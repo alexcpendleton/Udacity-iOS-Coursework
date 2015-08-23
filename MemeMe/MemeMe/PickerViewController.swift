@@ -148,6 +148,15 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
             UIKeyboardWillShowNotification, object: nil)
     }
     
+    func adjustFrameForKeyboardForCertainResponders(notification: NSNotification, modifier: CGFloat) {
+        // The top text field was getting shifted out of visibility when the keyboard was shown
+        // We only actually care about shifting the view upwards when the bottom text field
+        // is focused.
+        if bottomTextField.isFirstResponder() {
+            adjustFrameForKeyboard(notification, modifier: modifier)
+        }
+    }
+    
     func adjustFrameForKeyboard(notification: NSNotification, modifier: CGFloat) {
         self.view.frame.origin.y += (getKeyboardHeight(notification) * modifier)
     }
@@ -168,12 +177,12 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func keyboardWillShow(notification: NSNotification) {
-        adjustFrameForKeyboard(notification, modifier: -1)
+        adjustFrameForKeyboardForCertainResponders(notification, modifier: -1)
         setToolbarVisibility(true)
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        adjustFrameForKeyboard(notification, modifier: +1)
+        adjustFrameForKeyboardForCertainResponders(notification, modifier: +1)
         setToolbarVisibility(false)
     }
     
