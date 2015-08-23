@@ -207,7 +207,7 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate, U
         // covered by this course, or do individual app devs write their own
         // custom view controllers? Google+, Instagram, and Facebook all have
         // something like this.
-        presentImageViewer(UIImagePickerControllerSourceType.PhotoLibrary)
+        presentImageViewer(UIImagePickerControllerSourceType.SavedPhotosAlbum)
     }
     
     @IBAction func cameraPressed(sender:AnyObject!) {
