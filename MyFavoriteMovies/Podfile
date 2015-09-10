@@ -1,0 +1,3 @@
+use_frameworks!
+pod 'IQKeyboardManager', '~> 3.3'
+pod 'SwiftValidator', '2.1.1' 

@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+public protocol LoginServiceProtocol {
+    func AuthorizeCredentials(username:String, password:String)->Bool;
+}

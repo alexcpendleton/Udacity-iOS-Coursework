@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+public class PassthroughLoginService : LoginServiceProtocol {
+    // Allows anyone through, for testing purposes before auth is necessary
+    public func AuthorizeCredentials(username: String, password: String) -> Bool {
+        return false
+    }
+}

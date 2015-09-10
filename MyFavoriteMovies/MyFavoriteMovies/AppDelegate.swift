@@ -13,7 +13,14 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    private static var _defaultLoginService:LoginServiceProtocol?
+    internal static func defaultLoginService()->LoginServiceProtocol {
+        if _defaultLoginService == nil {
+            _defaultLoginService = PassthroughLoginService()
+        }
+        return _defaultLoginService!
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
