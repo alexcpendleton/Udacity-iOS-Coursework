@@ -12,7 +12,10 @@ import SwiftValidator
 
 public class LoginViewController : UIViewController {
     var formValidator:Validator!
-    var loginService:LoginServiceProtocol!
+    // TODO: Constructor injection
+    var loginService:LoginServiceProtocol = {
+        return AppDelegate.defaultLoginService()
+    }()
     
     @IBOutlet public weak var usernameField: UITextField!
     @IBOutlet public weak var passwordField: UITextField!
@@ -20,9 +23,6 @@ public class LoginViewController : UIViewController {
     
     public override func viewWillAppear(animated: Bool) {
         navigationController?.navigationBarHidden = true
-        if loginService == nil {
-            loginService = AppDelegate.defaultLoginService()
-        }
         
         formValidator = Validator()
         formValidator.registerField(passwordField, rules: [RequiredRuleWithMessage(message: "Password is required")])
@@ -74,6 +74,7 @@ public class LoginViewController : UIViewController {
         var message = ""
         formValidator.validate { (errors) -> Void in
             message = self.makeAlertMessage(errors.values.array)
+            validates = errors.count == 0
         }
         
         if validates {
@@ -87,8 +88,8 @@ public class LoginViewController : UIViewController {
         showAlert("Logged in!")
     }
     
-    func notifyOfFailedLogin(username:String) {
-        
+    func notifyOfFailedLogin(message:String) {
+        showAlert(message)
     }
 }
 

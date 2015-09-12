@@ -21,6 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return _defaultLoginService!
     }
+    
+    private static var _genreService:GenresServiceProtocol?
+    internal static func defaultGenreService()->GenresServiceProtocol {
+        if _genreService == nil {
+            _genreService = HardcodedGenresService()
+        }
+        return _genreService!
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.

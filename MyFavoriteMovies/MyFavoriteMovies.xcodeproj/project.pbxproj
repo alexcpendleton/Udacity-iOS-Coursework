@@ -10,6 +10,9 @@
 		492539E61BA11868009458D7 /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492539E51BA11868009458D7 /* LoginProtocol.swift */; };
 		492539E81BA11919009458D7 /* PassthroughLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492539E71BA11919009458D7 /* PassthroughLoginService.swift */; };
 		49563E651BA10C5E008F7B55 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49563E641BA10C5E008F7B55 /* LoginViewController.swift */; };
+		496286881BA3A4F10073AEC4 /* GenresServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496286871BA3A4F10073AEC4 /* GenresServiceProtocol.swift */; };
+		4962868A1BA3A5090073AEC4 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496286891BA3A5090073AEC4 /* Genre.swift */; };
+		4962868C1BA3A70D0073AEC4 /* HardcodedGenresService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4962868B1BA3A70D0073AEC4 /* HardcodedGenresService.swift */; };
 		49A864B31B8BF5530014BAA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A864B21B8BF5530014BAA3 /* AppDelegate.swift */; };
 		49A864B61B8BF5530014BAA3 /* MyFavoriteMovies.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49A864B41B8BF5530014BAA3 /* MyFavoriteMovies.xcdatamodeld */; };
 		49A864BB1B8BF5530014BAA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49A864B91B8BF5530014BAA3 /* Main.storyboard */; };
@@ -34,6 +37,9 @@
 		492539E51BA11868009458D7 /* LoginProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginProtocol.swift; sourceTree = "<group>"; };
 		492539E71BA11919009458D7 /* PassthroughLoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassthroughLoginService.swift; sourceTree = "<group>"; };
 		49563E641BA10C5E008F7B55 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		496286871BA3A4F10073AEC4 /* GenresServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenresServiceProtocol.swift; sourceTree = "<group>"; };
+		496286891BA3A5090073AEC4 /* Genre.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		4962868B1BA3A70D0073AEC4 /* HardcodedGenresService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HardcodedGenresService.swift; sourceTree = "<group>"; };
 		49A864AD1B8BF5530014BAA3 /* MyFavoriteMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFavoriteMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49A864B11B8BF5530014BAA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49A864B21B8BF5530014BAA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +82,18 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		496286841BA3A0A60073AEC4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				496286871BA3A4F10073AEC4 /* GenresServiceProtocol.swift */,
+				492539E71BA11919009458D7 /* PassthroughLoginService.swift */,
+				492539E51BA11868009458D7 /* LoginProtocol.swift */,
+				496286891BA3A5090073AEC4 /* Genre.swift */,
+				4962868B1BA3A70D0073AEC4 /* HardcodedGenresService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 		49A864A41B8BF5530014BAA3 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +117,7 @@
 		49A864AF1B8BF5530014BAA3 /* MyFavoriteMovies */ = {
 			isa = PBXGroup;
 			children = (
+				496286841BA3A0A60073AEC4 /* Services */,
 				49A864B21B8BF5530014BAA3 /* AppDelegate.swift */,
 				49A864B91B8BF5530014BAA3 /* Main.storyboard */,
 				49A864BC1B8BF5530014BAA3 /* Images.xcassets */,
@@ -106,8 +125,6 @@
 				49A864B41B8BF5530014BAA3 /* MyFavoriteMovies.xcdatamodeld */,
 				49A864B01B8BF5530014BAA3 /* Supporting Files */,
 				49563E641BA10C5E008F7B55 /* LoginViewController.swift */,
-				492539E51BA11868009458D7 /* LoginProtocol.swift */,
-				492539E71BA11919009458D7 /* PassthroughLoginService.swift */,
 			);
 			path = MyFavoriteMovies;
 			sourceTree = "<group>";
@@ -298,9 +315,12 @@
 			files = (
 				492539E81BA11919009458D7 /* PassthroughLoginService.swift in Sources */,
 				49563E651BA10C5E008F7B55 /* LoginViewController.swift in Sources */,
+				4962868C1BA3A70D0073AEC4 /* HardcodedGenresService.swift in Sources */,
 				492539E61BA11868009458D7 /* LoginProtocol.swift in Sources */,
+				496286881BA3A4F10073AEC4 /* GenresServiceProtocol.swift in Sources */,
 				49A864B61B8BF5530014BAA3 /* MyFavoriteMovies.xcdatamodeld in Sources */,
 				49A864B31B8BF5530014BAA3 /* AppDelegate.swift in Sources */,
+				4962868A1BA3A5090073AEC4 /* Genre.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

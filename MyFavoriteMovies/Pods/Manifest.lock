@@ -1,13 +1,18 @@
 PODS:
   - IQKeyboardManager (3.3.0)
   - SwiftValidator (2.1.1)
+  - Typhoon (3.3.2):
+    - Typhoon/no-arc (= 3.3.2)
+  - Typhoon/no-arc (3.3.2)
 
 DEPENDENCIES:
   - IQKeyboardManager (~> 3.3)
   - SwiftValidator (= 2.1.1)
+  - Typhoon (~> 3.3.1)
 
 SPEC CHECKSUMS:
   IQKeyboardManager: c87b6600cbfca89d1fe6e8052d936e6c20f65375
   SwiftValidator: 79936ea870f1dba8a0824763375375bb209fe30d
+  Typhoon: d0f4b40120b7011ac41748c3ca141cb12aac3737
 
 COCOAPODS: 0.38.2
